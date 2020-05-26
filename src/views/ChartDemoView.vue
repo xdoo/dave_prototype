@@ -1,13 +1,37 @@
 <template>
   <v-container fluid fill-height>
-    Heatmap Demo
-    <heatmap
-      :data="data1"
-      name="Zählung 02.2019"
-      :categories="categories1"
-      :hours="hours1"
-      rangeMax="250"
-    ></heatmap>  
+    <v-row>
+      <v-col>
+        <v-card
+          height="300px"
+        > 
+          <v-card-title>Zählung am 23.02.2019 auf der Donnerberger Brücke</v-card-title>
+          <heatmap
+            :data="data1"
+            name="Zählung 02.2019"
+            :categories="categories1"
+            :hours="hours1"
+            rangeMax="250"
+          ></heatmap>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+      <v-card
+          height="300px"
+        > 
+          <v-card-title>Zählung am 23.02.2019 auf der Donnerberger Brücke</v-card-title>
+          <heatmap
+            :data="data1"
+            name="Zählung 02.2019"
+            :categories="categories1"
+            :hours="hours1"
+            rangeMax="250"
+          ></heatmap>
+        </v-card>
+      </v-col>
+    </v-row> 
   </v-container>  
 </template>
 <script lang="ts">

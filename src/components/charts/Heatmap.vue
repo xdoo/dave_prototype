@@ -1,5 +1,8 @@
 <template>
-  <v-chart :options="options"/>
+  <v-chart 
+    :options="options"
+    autoresize
+    />
 </template>
 <style>
 .echarts {
@@ -58,7 +61,7 @@ export default class Heatmap extends Vue {
             calculable: true,
             orient: 'horizontal',
             left: 'center',
-            bottom: '50%',
+            bottom: '35%',
             inRange: {
               color: this.color
             }
