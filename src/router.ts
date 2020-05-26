@@ -53,6 +53,14 @@ export default new Router({
       name: "zaehlstelleactivate",
       component: ZaehlstelleActivateView
     },
+    {
+      path: '/chartdemo',
+      name: 'chartdemo',
+      component: () => import(/* webpackChunkName: "chartdemo" */ '@/views/ChartDemoView.vue'),
+      meta: {
+        title: "Chart Demo"
+      }
+    },
     {path: '*', redirect: '/'} //Fallback 2
   ]
 });
