@@ -5,6 +5,7 @@ import store from './store';
 import App from './App.vue';
 import router from "./router";
 import moment from "moment";
+import ECharts from 'vue-echarts'
 import validationRules from "@/mixins/validationRules";
 import './directives/infinitescroll';
 import './plugins/leafletmaps'
@@ -13,6 +14,7 @@ import proj4 from "proj4";
 Vue.config.productionTip = false;
 
 Vue.use(validationRules);
+Vue.component('v-chart', ECharts)
 
 moment.locale(window.navigator.language);
 
