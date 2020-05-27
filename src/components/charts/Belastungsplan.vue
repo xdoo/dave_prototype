@@ -20,6 +20,7 @@
     private readonly name!: string
 
     private readonly curveness: number = 0.45;
+    private readonly maxCurveness: number = 1;
 
     get options() {
       return {
@@ -32,25 +33,24 @@
             type: 'graph',
             layout: 'none',
             zoom: 0.8,
-            symbolSize: 1,
+            symbol: 'none',
             top: 'top',
             left: 'left',
             width: 300,
             height: 300,
+            // Default SymbolSize
+            edgeSymbolSize: 10,
             // roam: 'scale',
-            label: {
-              show: false
-            },
-            edgeSymbol: ['none', 'arrow'],
-            edgeSymbolSize: 15,
-            edgeLabel: {
-              show: false
-            },
             data: [
               // Source: 1
               {
-                name: '1s4t',
-                x: 470,
+                name: '1s1t',
+                x: 500,
+                y: 100
+              },
+              {
+                name: '1s2t',
+                x: 490,
                 y: 100
               },
               {
@@ -59,8 +59,8 @@
                 y: 100
               },
               {
-                name: '1s2t',
-                x: 490,
+                name: '1s4t',
+                x: 470,
                 y: 100
               },
               // Source: 2
@@ -68,6 +68,11 @@
                 name: '2s1t',
                 x: 720,
                 y: 200
+              },
+              {
+                name: '2s2t',
+                x: 720,
+                y: 230
               },
               {
                 name: '2s3t',
@@ -91,6 +96,11 @@
                 y: 450
               },
               {
+                name: '3s3t',
+                x: 590,
+                y: 450
+              },
+              {
                 name: '3s4t',
                 x: 600,
                 y: 450
@@ -111,7 +121,17 @@
                 x: 370,
                 y: 350
               },
+              {
+                name: '4s4t',
+                x: 370,
+                y: 320
+              },
               // Target: 1
+              {
+                name: '1t1s',
+                x: 590,
+                y: 100
+              },
               {
                 name: '1t2s',
                 x: 620,
@@ -132,6 +152,11 @@
                 name: '2t1s',
                 x: 720,
                 y: 330
+              },
+              {
+                name: '2t2s',
+                x: 720,
+                y: 320
               },
               {
                 name: '2t3s',
@@ -155,6 +180,11 @@
                 y: 450
               },
               {
+                name: '3t3s',
+                x: 500,
+                y: 450
+              },
+              {
                 name: '3t4s',
                 x: 470,
                 y: 450
@@ -174,26 +204,24 @@
                 name: '4t3s',
                 x: 370,
                 y: 220
+              },
+              {
+                name: '4t4s',
+                x: 370,
+                y: 230
               }
             ],
             edges: [
               // Source: 1
               {
-                source: '1s4t',
-                target: '4t1s',
+                source: '1s1t',
+                target: '1t1s',
                 lineStyle: {
-                  width: this.calculateLineWidth(this.data[0][3]),
-                  curveness: this.curveness,
+                  width: this.calculateLineWidth(this.data[0][0]),
+                  curveness: -this.maxCurveness,
                   color: this.color[0]
-                }
-              },
-              {
-                source: '1s3t',
-                target: '3t1s',
-                lineStyle: {
-                  width: this.calculateLineWidth(this.data[0][2]),
-                  color: this.color[0]
-                }
+                },
+                symbol: ['none', (this.data[0][0] === 0 ? 'none' : 'arrow')]
               },
               {
                 source: '1s2t',
@@ -202,16 +230,48 @@
                   width: this.calculateLineWidth(this.data[0][1]),
                   curveness: -this.curveness,
                   color: this.color[0]
-                }
+                },
+                symbol: ['none', (this.data[0][1] === 0 ? 'none' : 'arrow')]
+              },
+              {
+                source: '1s3t',
+                target: '3t1s',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[0][2]),
+                  color: this.color[0]
+                },
+                symbol: ['none', (this.data[0][2] === 0 ? 'none' : 'arrow')]
+              },
+              {
+                source: '1s4t',
+                target: '4t1s',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[0][3]),
+                  curveness: this.curveness,
+                  color: this.color[0]
+                },
+                symbol: ['none', (this.data[0][3] === 0 ? 'none' : 'arrow')]
               },
               // Source: 2
               {
-                source: '2s4t',
-                target: '4t2s',
+                source: '2s1t',
+                target: '1t2s',
                 lineStyle: {
-                  width: this.calculateLineWidth(this.data[1][3]),
+                  width: this.calculateLineWidth(this.data[1][0]),
+                  curveness: this.curveness,
                   color: this.color[1]
-                }
+                },
+                symbol: ['none', (this.data[1][0] === 0 ? 'none' : 'arrow')]
+              },
+              {
+                source: '2s2t',
+                target: '2t2s',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[1][1]),
+                  curveness: -this.maxCurveness,
+                  color: this.color[1]
+                },
+                symbol: ['none', (this.data[1][1] === 0 ? 'none' : 'arrow')]
               },
               {
                 source: '2s3t',
@@ -220,16 +280,17 @@
                   width: this.calculateLineWidth(this.data[1][2]),
                   curveness: -this.curveness,
                   color: this.color[1]
-                }
+                },
+                symbol: ['none', (this.data[1][2] === 0 ? 'none' : 'arrow')]
               },
               {
-                source: '2s1t',
-                target: '1t2s',
+                source: '2s4t',
+                target: '4t2s',
                 lineStyle: {
-                  width: this.calculateLineWidth(this.data[1][0]),
-                  curveness: this.curveness,
+                  width: this.calculateLineWidth(this.data[1][3]),
                   color: this.color[1]
-                }
+                },
+                symbol: ['none', (this.data[1][3] === 0 ? 'none' : 'arrow')]
               },
               // Source: 3
               {
@@ -238,7 +299,8 @@
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[2][0]),
                   color: this.color[2]
-                }
+                },
+                symbol: ['none', (this.data[2][0] === 0 ? 'none' : 'arrow')]
               },
               {
                 source: '3s2t',
@@ -247,7 +309,18 @@
                   width: this.calculateLineWidth(this.data[2][1]),
                   curveness: this.curveness,
                   color: this.color[2]
-                }
+                },
+                symbol: ['none', (this.data[2][1] === 0 ? 'none' : 'arrow')]
+              },
+              {
+                source: '3s3t',
+                target: '3t3s',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[2][2]),
+                  curveness: -this.maxCurveness,
+                  color: this.color[2]
+                },
+                symbol: ['none', (this.data[2][2] === 0 ? 'none' : 'arrow')]
               },
               {
                 source: '3s4t',
@@ -256,17 +329,10 @@
                   width: this.calculateLineWidth(this.data[2][3]),
                   curveness: -this.curveness,
                   color: this.color[2]
-                }
+                },
+                symbol: ['none', (this.data[2][3] === 0 ? 'none' : 'arrow')]
               },
               // Source: 4
-              {
-                source: '4s2t',
-                target: '2t4s',
-                lineStyle: {
-                  width: this.calculateLineWidth(this.data[3][1]),
-                  color: this.color[3]
-                }
-              },
               {
                 source: '4s1t',
                 target: '1t4s',
@@ -274,7 +340,17 @@
                   width: this.calculateLineWidth(this.data[3][0]),
                   curveness: -this.curveness,
                   color: this.color[3]
-                }
+                },
+                symbol: ['none', (this.data[3][0] === 0 ? 'none' : 'arrow')]
+              },
+              {
+                source: '4s2t',
+                target: '2t4s',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[3][1]),
+                  color: this.color[3]
+                },
+                symbol: ['none', (this.data[3][1] === 0 ? 'none' : 'arrow')]
               },
               {
                 source: '4s3t',
@@ -283,43 +359,55 @@
                   width: this.calculateLineWidth(this.data[3][2]),
                   curveness: this.curveness,
                   color: this.color[3]
-                }
+                },
+                symbol: ['none', (this.data[3][2] === 0 ? 'none' : 'arrow')]
+              },
+              {
+                source: '4s4t',
+                target: '4t4s',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[3][3]),
+                  curveness: -this.maxCurveness,
+                  color: this.color[3]
+                },
+                symbol: ['none', (this.data[3][3] === 0 ? 'none' : 'arrow')]
               },
             ],
             lineStyle: {
               opacity: 0.9,
-              width: 2,
-              curveness: 0
             }
           }
         ]
       }
     }
 
-    private calculateLineWidth(cars:number):number {
+    private calculateLineWidth(cars: number): number {
       let maxWidth = 5;
-      if(cars < 100) {
+      if(cars === 0) {
+        return 0;
+      }
+      if (cars < 100) {
         return 1;
       }
-      if(cars < 300) {
+      if (cars < 300) {
         return 1.5;
       }
-      if(cars < 500) {
+      if (cars < 500) {
         return 2;
       }
-      if(cars < 1000) {
+      if (cars < 1000) {
         return 2.5
       }
-      if(cars < 1500) {
+      if (cars < 1500) {
         return 3;
       }
-      if(cars < 2000) {
+      if (cars < 2000) {
         return 3.5;
       }
-      if(cars < 3000) {
+      if (cars < 3000) {
         return 4
       }
-      if(cars < 5000) {
+      if (cars < 5000) {
         return 4.5;
       }
       return maxWidth;
