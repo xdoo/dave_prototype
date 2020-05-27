@@ -10,11 +10,18 @@
     <v-card-actions>
       <v-select
         class="px-2"
+        v-model="node"
         :items="nodes"
         label="Knotenpunkte"
       ></v-select>
+      <v-btn
+        @click="takePicture()" 
+        icon>
+        <v-icon>mdi-image</v-icon>
+      </v-btn>
     </v-card-actions>
     <heatmap
+      ref="heatmap"
       :data="dataGesamt"
       name="Zählung 08.2019"
       :categories="categories"
@@ -25,9 +32,11 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { Component, Prop } from "vue-property-decorator"
+import { Component, Prop, Ref } from "vue-property-decorator"
 
 import Heatmap from "@/components/charts/Heatmap.vue"
+
+import { base64ToBlob } from "base64-blob"
 
 @Component({
   components: {
@@ -36,8 +45,30 @@ import Heatmap from "@/components/charts/Heatmap.vue"
 })
 export default class ClassicHeatmapCard extends Vue {
 
+  node: string =  ""
+
   @Prop({default: "100%"}) readonly height!: string
   @Prop({default: "100%"}) readonly width!: string
+
+  @Ref('heatmap') readonly heatmap!: Heatmap
+
+  takePicture() {
+
+    const b64 = this.heatmap.printImage()
+    
+    base64ToBlob(b64)
+    .then((b) => {
+      console.log(b)
+      const name = "heatmap_" + this.node.toLowerCase + ".png"
+      const url = URL.createObjectURL(b)
+      const link = document.createElement('a')
+      link.href = url
+      link.download
+      link.setAttribute('download', name)
+      document.body.appendChild(link)
+      link.click()
+    })
+  }
 
   get nodes() {
     return ['Gesamt', 'Donnersberger Brücke (N)', 'Donnersberger Brücke (S)']
