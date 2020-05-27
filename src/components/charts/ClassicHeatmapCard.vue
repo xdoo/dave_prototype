@@ -66,8 +66,7 @@ export default class ClassicHeatmapCard extends Vue {
     
     base64ToBlob(b64)
     .then((b) => {
-      console.log(b)
-      const name = "heatmap_" + this.node.toLowerCase + ".png"
+      const name = "heatmap_" + this.node.toLowerCase() + ".png"
       const url = URL.createObjectURL(b)
       const link = document.createElement('a')
       link.href = url
