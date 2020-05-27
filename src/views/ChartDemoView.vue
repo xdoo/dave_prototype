@@ -31,7 +31,21 @@
           ></heatmap>
         </v-card>
       </v-col>
-    </v-row> 
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-card
+            height="400px"
+        >
+          <v-card-title>Zählung am 05.04.2016 auf der Landshuter Allee</v-card-title>
+          <belastungsplan
+              name="Zählung 05.04.2016"
+              :data="dataBelastungsplan"
+              :color="colorBelastungsplan">
+          </belastungsplan>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>  
 </template>
 <script lang="ts">
@@ -39,10 +53,11 @@ import Vue from 'vue'
 import { Component } from "vue-property-decorator"
 
 import Heatmap from "@/components/charts/Heatmap.vue"
+import Belastungsplan from "@/components/charts/Belastungsplan.vue";
 
 @Component({
   components: {
-    Heatmap
+    Heatmap, Belastungsplan
   }
 })
 export default class ChartDemoView extends Vue {
@@ -251,6 +266,19 @@ export default class ChartDemoView extends Vue {
       [94,0,9],	[94,1,1],	[94,2,1],	[94,3,11],
       [95,0,7],	[95,1,6],	[95,2,2],	[95,3,15]
     ] 
+  }
+
+  get colorBelastungsplan() {
+    return ['black', 'red', 'green', 'blue', 'yellow', 'purple', 'lime', 'grey'];
+  }
+
+  get dataBelastungsplan() {
+    return[
+      [202,6099,2077,1324],
+      [5036,0,3282,11179],
+      [983,1680,1682,7085],
+      [80,10349,5028,0],
+    ];
   }
 
 }
