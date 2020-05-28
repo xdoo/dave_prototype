@@ -1,5 +1,9 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="pa-0">
+    <v-row>
+      <zaehlstelle-header></zaehlstelle-header>
+    </v-row>
+    <v-container>
     <v-row>
       <v-col>
         <heatmap-card
@@ -35,6 +39,7 @@
         </v-card>
       </v-col>
     </v-row>
+    </v-container>
   </v-container>
 </template>
 <script lang="ts">
@@ -42,13 +47,14 @@
   import {Component} from "vue-property-decorator"
 
   import HeatmapCard from "@/components/charts/HeatmapCard.vue"
-
-  import Belastungsplan from "@/components/charts/Belastungsplan.vue";
+  import Belastungsplan from "@/components/charts/Belastungsplan.vue"
+  import ZaehlstelleHeader from "@/components/zaehlstelle/ZaehlstelleHeader.vue"
 
   @Component({
   components: {
     HeatmapCard,
-    Belastungsplan
+    Belastungsplan,
+    ZaehlstelleHeader
   }
 })
 export default class ChartDemoView extends Vue {

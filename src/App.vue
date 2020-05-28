@@ -77,7 +77,7 @@
       </v-footer>
     </v-navigation-drawer>
     <v-content class="main">
-      <v-container fluid fill-height>
+      <v-container fluid fill-height class="pa-0">
         <v-fade-transition mode="out-in">
           <router-view></router-view>
         </v-fade-transition>
