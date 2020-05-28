@@ -12,6 +12,7 @@
     "@types/leaflet": "^1.5.12",
     "@types/proj4": "^2.5.0",
     "babel-polyfill": "^6.26.0",
+    "base64-blob": "^1.4.1",
     "core-js": "^3.6.5",
     "echarts": "^4.8.0",
     "leaflet": "^1.6.0",

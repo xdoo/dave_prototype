@@ -1,5 +1,6 @@
 <template>
   <v-chart 
+    ref="chart"
     :options="options"
     autoresize
     />
@@ -12,7 +13,7 @@
 </style>
 <script lang="ts">
 import Vue from 'vue'
-import { Component, Prop } from "vue-property-decorator"
+import { Component, Prop, Ref } from "vue-property-decorator"
 
 // chart
 import 'echarts/lib/chart/heatmap'
@@ -27,19 +28,31 @@ export default class Heatmap extends Vue {
   @Prop() readonly name!: string
   @Prop() readonly categories!: string []
   @Prop() readonly hours!: string []
-  @Prop({default: function() { return ['#f6efa6', '#d88273', '#bf444c']}}) readonly color!: string []
   @Prop({default: 0}) readonly rangeMin!: number
   @Prop({default: 100}) readonly rangeMax!: number
-  
+
+  @Ref('chart') readonly chart!: any
+
+  printImage() {
+    return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
+  }
+
+  get color() {
+    return this.rangeMin < 0 ? ['#4575b4', '#d88273', '#bf444c'] : ['#f6efa6', '#d88273', '#bf444c']
+  }
+
   get options () {
+
+    console.log(this.color)
+
     return {
         tooltip: {
             position: 'top'
         },
         animation: false,
         grid: {
-            height: '30%',
-            top: '10%'
+            height: '25%',
+            top: '5%'
         },
         xAxis: {
             type: 'category',
@@ -61,7 +74,7 @@ export default class Heatmap extends Vue {
             calculable: true,
             orient: 'horizontal',
             left: 'center',
-            bottom: '35%',
+            bottom: '50%',
             inRange: {
               color: this.color
             }
