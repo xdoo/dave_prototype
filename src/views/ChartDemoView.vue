@@ -15,6 +15,7 @@
       <v-col>
         <v-card
             height="400px"
+            outlined
         >
           <v-card-title>Zählung am 05.04.2016 auf der Landshuter Allee</v-card-title>
           <belastungsplan
@@ -23,12 +24,10 @@
               :color="colorBelastungsplan">
           </belastungsplan>
         </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
         <v-card
             height="400px"
+            class="mt-2"
+            outlined
         >
           <v-card-title>Zählung am 05.04.2016 auf der Landshuter Allee ohne Knotenarm 3</v-card-title>
           <belastungsplan
@@ -37,6 +36,16 @@
               :color="colorBelastungsplan">
           </belastungsplan>
         </v-card>
+      </v-col>
+      <v-col>
+        <stepline-card
+          height="810"
+        ></stepline-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        
       </v-col>
     </v-row>
     </v-container>
@@ -47,12 +56,14 @@
   import {Component} from "vue-property-decorator"
 
   import HeatmapCard from "@/components/charts/HeatmapCard.vue"
+  import SteplineCard from "@/components/charts/StepLineCard.vue"
   import Belastungsplan from "@/components/charts/Belastungsplan.vue"
   import ZaehlstelleHeader from "@/components/zaehlstelle/ZaehlstelleHeader.vue"
 
   @Component({
   components: {
     HeatmapCard,
+    SteplineCard,
     Belastungsplan,
     ZaehlstelleHeader
   }
