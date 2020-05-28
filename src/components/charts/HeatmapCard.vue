@@ -2,6 +2,7 @@
   <v-card
     :height="height"
     :width="width"
+    outlined
   > 
     <v-card-title>Nutzung über 24 Stunden</v-card-title>
     <v-card-text>
