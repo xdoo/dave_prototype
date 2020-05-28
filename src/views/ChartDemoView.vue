@@ -24,6 +24,11 @@
           </belastungsplan>
         </v-card>
       </v-col>
+      <v-col>
+        <stepline-card
+          height="800px"
+        ></stepline-card>
+      </v-col>
     </v-row>
     <v-row>
       <v-col>
@@ -47,12 +52,14 @@
   import {Component} from "vue-property-decorator"
 
   import HeatmapCard from "@/components/charts/HeatmapCard.vue"
+  import SteplineCard from "@/components/charts/StepLineCard.vue"
   import Belastungsplan from "@/components/charts/Belastungsplan.vue"
   import ZaehlstelleHeader from "@/components/zaehlstelle/ZaehlstelleHeader.vue"
 
   @Component({
   components: {
     HeatmapCard,
+    SteplineCard,
     Belastungsplan,
     ZaehlstelleHeader
   }
