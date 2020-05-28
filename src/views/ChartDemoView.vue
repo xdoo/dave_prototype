@@ -10,7 +10,7 @@
     <v-row>
       <v-col>
           <belastungsplan-card
-              height="700px"
+              height="1000px"
           ></belastungsplan-card>
       </v-col>
     </v-row>
