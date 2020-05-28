@@ -1,7 +1,7 @@
 <template>
-  <v-container class="pa-0">
+  <v-container class="pt-0">
     <v-row>
-      <v-col class="pa-0">
+      <v-col class="pt-0">
         <div style="height: 180px; width: 100%;">
           <l-map 
             ref="map"
