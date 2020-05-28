@@ -47,12 +47,17 @@ import { base64ToBlob } from "base64-blob"
   }
 })
 export default class StepLineCard extends Vue {
-   
+  
+  node: string =  "Gesamt"
+  
   @Prop({default: "100%"}) readonly height!: string
   @Prop({default: "100%"}) readonly width!: string
 
   @Ref('stepline') readonly stepline!: StepLine
 
+  get nodes() {
+    return ['Gesamt', 'Donnersberger Brücke (N)', 'Donnersberger Brücke (S)', 'Fehler', 'Ereignis']
+  }
 
   takePicture() {
 
