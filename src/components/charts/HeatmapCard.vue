@@ -50,7 +50,7 @@ import { base64ToBlob } from "base64-blob"
     Heatmap
   }
 })
-export default class ClassicHeatmapCard extends Vue {
+export default class HeatmapCard extends Vue {
 
   node: string =  "Gesamt"
   data: number [][] = this.dataGesamt
