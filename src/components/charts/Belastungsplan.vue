@@ -1,11 +1,102 @@
 <template>
-  <v-chart :options="options"
-           autoresize/>
+  <div>
+    <v-row justify="center" align="center">
+      <v-col cols="8" md="2">
+        <v-card
+            class="pa-2"
+            outlined
+            tile
+        >
+          0/0
+        </v-card>
+      </v-col>
+      <v-col cols="8" md="4">
+        <v-card
+            class="pa-2"
+            outlined
+            tile
+        >
+         0/1
+        </v-card>
+      </v-col>
+      <v-col cols="8" md="2">
+        <v-card
+            class="pa-2"
+            outlined
+            tile
+        >
+          0/2
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row style="height: 310px" justify="center" align="center">
+      <v-col cols="8" md="2">
+        <v-card
+            class="pa-2"
+            outlined
+            tile
+        >
+          1/2
+        </v-card>
+      </v-col>
+      <v-col cols="8" md="4">
+        <v-card
+            class="pa-2"
+            outlined
+            tile
+            height="300px"
+        >
+        <v-chart
+            ref="chart"
+            :options="options"
+             autoresize/>
+        </v-card>
+      </v-col>
+      <v-col cols="8" md="2">
+        <v-card
+            class="pa-2"
+            outlined
+            tile
+        >
+          1/2
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row justify="center" align="center">
+      <v-col cols="8" md="2">
+        <v-card
+            class="pa-2"
+            outlined
+            tile
+        >
+          2/0
+        </v-card>
+      </v-col>
+      <v-col cols="8" md="4">
+        <v-card
+            class="pa-2"
+            outlined
+            tile
+        >
+          2/1
+        </v-card>
+      </v-col>
+      <v-col cols="8" md="2">
+        <v-card
+            class="pa-2"
+            outlined
+            tile
+        >
+          2/2
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script lang="ts">
 
-  import {Component, Prop, Vue} from "vue-property-decorator";
+  import {Component, Prop, Ref, Vue} from "vue-property-decorator";
   import 'echarts/lib/chart/graph';
 
   @Component
@@ -21,6 +112,13 @@
 
     private readonly curveness: number = 0.45;
     private readonly maxCurveness: number = 1;
+
+    @Ref('chart') readonly chart!: any
+    @Ref('plan') readonly plan!: any
+
+    printImage() {
+      return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
+    }
 
     get options() {
       return {
@@ -44,6 +142,16 @@
             data: [
               // Source: 1
               {
+                name: '1',
+                x: 545,
+                y: 110,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
+              {
                 name: '1s1t',
                 x: 500,
                 y: 100
@@ -64,6 +172,16 @@
                 y: 100
               },
               // Source: 2
+              {
+                name: '2',
+                x: 710,
+                y: 275,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
               {
                 name: '2s1t',
                 x: 720,
@@ -86,6 +204,16 @@
               },
               // Source: 3
               {
+                name: '3',
+                x: 545,
+                y: 440,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
+              {
                 name: '3s1t',
                 x: 610,
                 y: 450
@@ -106,6 +234,16 @@
                 y: 450
               },
               // Source: 4
+              {
+                name: '4',
+                x: 380,
+                y: 275,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
               {
                 name: '4s1t',
                 x: 370,
@@ -383,7 +521,7 @@
 
     private calculateLineWidth(cars: number): number {
       let maxWidth = 5;
-      if(cars === 0) {
+      if (cars === 0) {
         return 0;
       }
       if (cars < 100) {
