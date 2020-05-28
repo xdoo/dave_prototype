@@ -1,97 +1,8 @@
 <template>
-  <div>
-    <v-row justify="center" align="center">
-      <v-col cols="8" md="2">
-        <v-card
-            class="pa-2"
-            outlined
-            tile
-        >
-          0/0
-        </v-card>
-      </v-col>
-      <v-col cols="8" md="4">
-        <v-card
-            class="pa-2"
-            outlined
-            tile
-        >
-         0/1
-        </v-card>
-      </v-col>
-      <v-col cols="8" md="2">
-        <v-card
-            class="pa-2"
-            outlined
-            tile
-        >
-          0/2
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row style="height: 310px" justify="center" align="center">
-      <v-col cols="8" md="2">
-        <v-card
-            class="pa-2"
-            outlined
-            tile
-        >
-          1/2
-        </v-card>
-      </v-col>
-      <v-col cols="8" md="4">
-        <v-card
-            class="pa-2"
-            outlined
-            tile
-            height="300px"
-        >
-        <v-chart
-            ref="chart"
-            :options="options"
-             autoresize/>
-        </v-card>
-      </v-col>
-      <v-col cols="8" md="2">
-        <v-card
-            class="pa-2"
-            outlined
-            tile
-        >
-          1/2
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row justify="center" align="center">
-      <v-col cols="8" md="2">
-        <v-card
-            class="pa-2"
-            outlined
-            tile
-        >
-          2/0
-        </v-card>
-      </v-col>
-      <v-col cols="8" md="4">
-        <v-card
-            class="pa-2"
-            outlined
-            tile
-        >
-          2/1
-        </v-card>
-      </v-col>
-      <v-col cols="8" md="2">
-        <v-card
-            class="pa-2"
-            outlined
-            tile
-        >
-          2/2
-        </v-card>
-      </v-col>
-    </v-row>
-  </div>
+  <v-chart
+      ref="chart"
+      :options="options"
+      autoresize/>
 </template>
 
 <script lang="ts">
@@ -114,7 +25,6 @@
     private readonly maxCurveness: number = 1;
 
     @Ref('chart') readonly chart!: any
-    @Ref('plan') readonly plan!: any
 
     printImage() {
       return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
@@ -126,14 +36,13 @@
           text: 'Belastungsplan'
         },
         series: [
+            // Data Series
           {
             name: this.name,
             type: 'graph',
             layout: 'none',
             zoom: 0.8,
             symbol: 'none',
-            top: 'top',
-            left: 'left',
             width: 300,
             height: 300,
             // Default SymbolSize
@@ -141,16 +50,6 @@
             // roam: 'scale',
             data: [
               // Source: 1
-              {
-                name: '1',
-                x: 545,
-                y: 110,
-                symbol: 'circle',
-                symbolSize: 25,
-                label: {
-                  show: true
-                }
-              },
               {
                 name: '1s1t',
                 x: 500,
@@ -173,16 +72,6 @@
               },
               // Source: 2
               {
-                name: '2',
-                x: 710,
-                y: 275,
-                symbol: 'circle',
-                symbolSize: 25,
-                label: {
-                  show: true
-                }
-              },
-              {
                 name: '2s1t',
                 x: 720,
                 y: 200
@@ -204,16 +93,6 @@
               },
               // Source: 3
               {
-                name: '3',
-                x: 545,
-                y: 440,
-                symbol: 'circle',
-                symbolSize: 25,
-                label: {
-                  show: true
-                }
-              },
-              {
                 name: '3s1t',
                 x: 610,
                 y: 450
@@ -234,16 +113,6 @@
                 y: 450
               },
               // Source: 4
-              {
-                name: '4',
-                x: 380,
-                y: 275,
-                symbol: 'circle',
-                symbolSize: 25,
-                label: {
-                  show: true
-                }
-              },
               {
                 name: '4s1t',
                 x: 370,
@@ -514,6 +383,190 @@
             lineStyle: {
               opacity: 0.9,
             }
+          },
+            // Info Series
+          {
+            name: this.name,
+            type: 'graph',
+            layout: 'none',
+            zoom: 0.8,
+            symbol: 'none',
+            width: 300,
+            height: 300,
+            // Default SymbolSize
+            edgeSymbolSize: 10,
+            // roam: 'scale',
+            label: {
+              backgroundColor: '#eee',
+              borderColor: '#aaa',
+              borderWidth: 1,
+              borderRadius: 4,
+              rich: {
+                value: {
+                  color: '#999',
+                  lineHeight: 13,
+                  align: 'right'
+                },
+                divider: {
+                  color: '#999',
+                  lineHeight: 5,
+                  align: 'right'
+                },
+                name: {
+                  fontSize: 16,
+                  lineHeight: 22,
+                  align: 'center',
+                  color: 'black'
+                },
+              }
+            },
+            data: [
+              // Source: 1
+              {
+                name: '1',
+                data: [5, 44, 333, 2222, 'Teststraße', 11111, '000000'],
+                x: 545,
+                y: 110,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  formatter: function (params: any) {
+                    return `{value|${params.data.data[0]} \n${params.data.data[1]} \n${params.data.data[2]} }\n`
+                        + `{divider|--------}\n {value|${params.data.data[3]} }\n`
+                        + `{name|${params.data.data[4]}} \n`
+                        + `{value|${params.data.data[5]} }\n\n\n`
+                        + `{value|${params.data.data[6]} }`
+                        ;
+                  },
+                  show: true,
+                  rotate: 90,
+                  position: [-60, -10]
+                },
+              },
+              // Source: 2
+              {
+                name: '2',
+                data: [5, 44, 333, 2222, 'Teststraße', 11111, '000000'],
+                x: 710,
+                y: 275,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  formatter: function (params: any) {
+                    return `{value|${params.data.data[0]} \n${params.data.data[1]} \n${params.data.data[2]} }\n`
+                        + `{divider|--------}\n {value|${params.data.data[3]} }\n`
+                        + `{name|${params.data.data[4]}} \n`
+                        + `{value|${params.data.data[5]} }\n\n\n`
+                        + `{value|${params.data.data[6]} }`
+                        ;
+                  },
+                  show: true,
+                  position: [40, -60]
+                }
+              },
+              // Source: 3
+              {
+                name: '3',
+                data: [5, 44, 333, 2222, 'Teststraße', 11111, '000000'],
+                x: 545,
+                y: 440,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  formatter: function (params: any) {
+                    return `{value|${params.data.data[6]} }\n\n\n`
+                        + `{name|${params.data.data[4]}} \n`
+                        + `{value|${params.data.data[5]} }\n\n`
+                        + `{value|${params.data.data[0]} \n${params.data.data[1]} \n${params.data.data[2]} }\n`
+                        + `{divider|--------}\n {value|${params.data.data[3]} }`
+                        ;
+                  },
+                  show: true,
+                  rotate: 90,
+                  position: [-50, 120]
+                }
+              },
+              // Source: 4
+              {
+                name: '4',
+                data: [5, 44, 333, 2222, 'Teststraße', 11111, '000000'],
+                x: 380,
+                y: 275,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  formatter: function (params: any) {
+                    return `{value|${params.data.data[6]} }\n\n\n`
+                        + `{name|${params.data.data[4]}} \n`
+                        + `{value|${params.data.data[5]} }\n\n`
+                        + `{value|${params.data.data[0]} \n${params.data.data[1]} \n${params.data.data[2]} }\n`
+                        + `{divider|--------}\n {value|${params.data.data[3]} }`
+                        ;
+                  },
+                  show: true,
+                  position: [-95, -60]
+                }
+              },
+            ],
+          },
+            // Label Series
+          {
+            name: this.name,
+            type: 'graph',
+            layout: 'none',
+            zoom: 0.8,
+            symbol: 'none',
+            width: 300,
+            height: 300,
+            // Default SymbolSize
+            edgeSymbolSize: 10,
+            // roam: 'scale',
+            data: [
+              // Source: 1
+              {
+                name: '1',
+                x: 545,
+                y: 110,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
+              // Source: 2
+              {
+                name: '2',
+                x: 710,
+                y: 275,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
+              // Source: 3
+              {
+                name: '3',
+                x: 545,
+                y: 440,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
+              // Source: 4
+              {
+                name: '4',
+                x: 380,
+                y: 275,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
+            ],
           }
         ]
       }
