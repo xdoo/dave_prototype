@@ -47,7 +47,7 @@ import ClassicHeatmapCard from "@/components/charts/ClassicHeatmapCard.vue"
 
   @Component({
   components: {
-    ClassicHeatmapCard
+    ClassicHeatmapCard,
     Belastungsplan
   }
 })
