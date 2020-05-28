@@ -24,7 +24,7 @@
     </v-container>
     <v-container>
       <v-row>
-        <v-col cols="5">
+        <v-col cols="6">
           <v-card
             height="100%"
             outlined
@@ -32,7 +32,7 @@
             <v-card-title>Zählung vom 24.12.2019</v-card-title>
             <v-card-subtitle>Zählart XY</v-card-subtitle>
             <v-card-text>
-              Es werden die Daten der Zählung vom 24.12.2019 angezeigt. Um eine andere Zähldaten anzuzeigen, bitte unten eine entsprechende Zählung auswählen.
+              Es werden die Daten der Zählung vom 24.12.2019 angezeigt. Um eine andere Zähldaten anzuzeigen, bitte unten eine entsprechende Zählung auswählen. Die Änderung wirkt sich auf die komplette Seite aus!
             </v-card-text>
             <v-card-actions>
               <v-select
