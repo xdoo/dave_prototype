@@ -58,33 +58,16 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Zählstellen</v-list-item-title>
-            <!--            <v-list-item-title>Zählstelle suchen</v-list-item-title>-->
           </v-list-item-content>
         </v-list-item>
-        <!--        <v-list-item :to="{path: '/zaehlstelle'}">-->
-        <!--          <v-list-item-action>-->
-        <!--            <v-icon> mdi-flag-plus</v-icon>-->
-        <!--          </v-list-item-action>-->
-        <!--          <v-list-item-content>-->
-        <!--            <v-list-item-title>Zählstelle anlegen</v-list-item-title>-->
-        <!--          </v-list-item-content>-->
-        <!--        </v-list-item>-->
-        <!--        <v-list-item :to="{path: '/zaehlstelleimport'}">-->
-        <!--          <v-list-item-action>-->
-        <!--            <v-icon> mdi-database-import</v-icon>-->
-        <!--          </v-list-item-action>-->
-        <!--          <v-list-item-content>-->
-        <!--            <v-list-item-title>Zählstelle importieren</v-list-item-title>-->
-        <!--          </v-list-item-content>-->
-        <!--        </v-list-item>-->
-        <!--        <v-list-item :to="{path: '/zaehlstelleactivate'}">-->
-        <!--          <v-list-item-action>-->
-        <!--            <v-icon>mdi-map-marker-check-outline</v-icon>-->
-        <!--          </v-list-item-action>-->
-        <!--          <v-list-item-content>-->
-        <!--            <v-list-item-title>Zählstelle freigeben</v-list-item-title>-->
-        <!--          </v-list-item-content>-->
-        <!--        </v-list-item>-->
+        <v-list-item :to="{path: '/chartdemo'}">
+          <v-list-item-action>
+            <v-icon>mdi-google-downasaur</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Chart Demo</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
       <v-footer absolute>
         <v-col class="text-center">
