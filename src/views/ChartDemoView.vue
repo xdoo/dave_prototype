@@ -1,34 +1,44 @@
 <template>
   <v-container fluid class="pa-0">
-    <v-row>
-      <zaehlstelle-header></zaehlstelle-header>
-    </v-row>
-    <v-container>
-    <v-row>
-      <v-col>
-        <heatmap-card
-          height="500px"
-        ></heatmap-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <belastungsplan-card
-            height="810"
-        ></belastungsplan-card>
-      </v-col>
-      <v-col>
-        <stepline-card
-          height="810"
-        ></stepline-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+    <v-row no-gutters>
+      <v-col cols="2">Zählungen</v-col>
+      <v-col cols="10">
+        <v-container class="pa-0">
+          <v-row>
+            <zaehlstelle-header></zaehlstelle-header>
+          </v-row>
+          <v-row>
+            <v-container>
+              <v-row>
+                <v-col>
+                  <heatmap-card
+                    height="500px"
+                  ></heatmap-card>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <belastungsplan-card
+                      height="810"
+                  ></belastungsplan-card>
+                </v-col>
+                <v-col>
+                  <stepline-card
+                    height="810"
+                  ></stepline-card>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
 
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-row>
+        </v-container>
       </v-col>
     </v-row>
-    </v-container>
+
   </v-container>
 </template>
 <script lang="ts">
