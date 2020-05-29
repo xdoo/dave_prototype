@@ -4,7 +4,7 @@
       :width="width"
       outlined
   >
-    <v-card-title>Nutzung über 24 Stunden</v-card-title>
+    <v-card-title>Belastung nach Knotenarmen</v-card-title>
     <v-card-text>
       Die Grafik zeigt, wie viele Fahrzeuge der gewählten Kategorien in welche Richtung gefahren sind.
     </v-card-text>
@@ -35,12 +35,14 @@
         <v-icon>mdi-table-large</v-icon>
       </v-btn>
     </v-card-actions>
-    <belastungsplan
-        ref="belastungsplan"
-        name="Zählung 05.04.2016"
-        :data="data"
-        :color="color">
-    </belastungsplan>
+    <v-sheet height="72%">
+      <belastungsplan
+          ref="belastungsplan"
+          name="Zählung 05.04.2016"
+          :data="data"
+          :color="color">
+      </belastungsplan>
+    </v-sheet>
   </v-card>
 </template>
 <script lang="ts">
