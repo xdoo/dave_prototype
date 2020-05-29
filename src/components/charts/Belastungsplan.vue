@@ -5,10 +5,18 @@
       autoresize/>
 </template>
 
+<style>
+  .echarts {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
 <script lang="ts">
 
   import {Component, Prop, Ref, Vue} from "vue-property-decorator";
   import 'echarts/lib/chart/graph';
+
 
   @Component
   export default class Belastungsplan extends Vue {
@@ -32,9 +40,6 @@
 
     get options() {
       return {
-        title: {
-          text: 'Belastungsplan'
-        },
         series: [
             // Data Series
           {

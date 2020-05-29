@@ -13,9 +13,19 @@
     </v-row>
     <v-row>
       <v-col>
-          <belastungsplan-card
-              height="1000px"
-          ></belastungsplan-card>
+        <belastungsplan-card
+            height="1000px"
+        ></belastungsplan-card>
+      </v-col>
+      <v-col>
+        <stepline-card
+          height="810"
+        ></stepline-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+
       </v-col>
     </v-row>
     </v-container>
