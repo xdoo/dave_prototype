@@ -13,7 +13,7 @@
     </v-overlay>
     <TheSnackbar/>
     <v-app-bar app clipped-left dark color="primary">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
 
       <router-link to="/">
         <v-toolbar-title class="font-weight-bold">
@@ -49,12 +49,11 @@
       <v-spacer></v-spacer>
       <span> {{ this.loggedInUser }} </span>
     </v-app-bar>
-    <v-navigation-drawer app clipped v-model="drawer">
+    <!--<v-navigation-drawer app clipped v-model="drawer">
       <v-list dense>
         <v-list-item :to="{path: '/zaehlstelleoverview'}">
           <v-list-item-action>
             <v-icon>mdi-map-marker-multiple-outline</v-icon>
-            <!--            <v-icon> mdi-magnify</v-icon>-->
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Zählstellen</v-list-item-title>
@@ -76,6 +75,7 @@
         </v-col>
       </v-footer>
     </v-navigation-drawer>
+    -->
     <v-content class="main">
       <v-container fluid fill-height class="pa-0">
         <v-fade-transition mode="out-in">
