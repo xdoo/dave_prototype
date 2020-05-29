@@ -2,6 +2,7 @@
   <v-card
       :height="height"
       :width="width"
+      outlined
   >
     <v-card-title>Nutzung über 24 Stunden</v-card-title>
     <v-card-text>
@@ -34,12 +35,14 @@
         <v-icon>mdi-table-large</v-icon>
       </v-btn>
     </v-card-actions>
-    <belastungsplan
-        ref="belastungsplan"
-        name="Zählung 05.04.2016"
-        :data="data"
-        :color="color">
-    </belastungsplan>
+    <v-sheet height="72%">
+      <belastungsplan
+          ref="belastungsplan"
+          name="Zählung 05.04.2016"
+          :data="data"
+          :color="color">
+      </belastungsplan>
+    </v-sheet>
   </v-card>
 </template>
 <script lang="ts">

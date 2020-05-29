@@ -14,7 +14,7 @@
     <v-row>
       <v-col>
         <belastungsplan-card
-            height="1000px"
+            height="810"
         ></belastungsplan-card>
       </v-col>
       <v-col>

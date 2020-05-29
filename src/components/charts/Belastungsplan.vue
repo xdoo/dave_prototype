@@ -1,17 +1,21 @@
 <template>
-  <v-chart
-      ref="chart"
-      :options="options"
-      autoresize/>
+  <v-sheet 
+    ref="container"
+    width="100%"
+    height="100%">
+    <v-chart
+        ref="chart"
+        :initOptions="initOptions"
+        :options="options"
+        autoresize/>
+  </v-sheet>
 </template>
-
 <style>
-  .echarts {
-    width: 100%;
-    height: 100%;
-  }
+.echarts {
+  width: 100%;
+  height: 100%;
+}
 </style>
-
 <script lang="ts">
 
   import {Component, Prop, Ref, Vue} from "vue-property-decorator";
@@ -33,9 +37,16 @@
     private readonly maxCurveness: number = 1;
 
     @Ref('chart') readonly chart!: any
+    @Ref('container') readonly container!: HTMLDivElement
 
     printImage() {
       return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
+    }
+
+    get initOptions() {
+      return {
+        dom: this.container
+      }
     }
 
     get options() {
