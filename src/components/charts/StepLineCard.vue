@@ -6,7 +6,7 @@
   > 
     <v-card-title>Belastung nach Zeit und Fahrzeugen</v-card-title>
     <v-card-text>
-      Die Grafik zeigt, wieviele Fahrzeuge, wecher Art, zu welcher Zeit, die Zählstelle passiert haben. Wenn Sie mit der Maus über die Abschnitte fahren, werden Ihnen die genauen Zahlen angezeigt. Fahren Sie mit der Maus unten über die Legende, so werden die Abschnitte hervorgehoben, die zur Farbe passen.
+      Die Grafik zeigt, wieviele Fahrzeuge, wecher Art, zu welcher Zeit, die Zählstelle passiert haben. Wenn Sie mit der Maus über das Chart fahren, dann werden Ihnen die konkreten Zahlen angezeigt.
     </v-card-text>
     <v-card-actions>
         <v-select
