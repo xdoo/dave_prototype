@@ -57,13 +57,16 @@
         },
         toolbox: {
           showTitle: false,
+          right: '2%',
           feature: {
             dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},
-            magicType: {show: true, type: ['line', 'bar', 'stack'], title: {
-              line: 'Linie',
+            magicType: {
+              show: true, type: ['line', 'bar', 'stack'], title: {
+                line: 'Linie',
                 bar: 'Balken',
                 stack: 'Gestapelt'
-              }},
+              }
+            },
             restore: {show: true, title: 'Standard'},
             saveAsImage: {show: true, title: 'Download'}
           },
@@ -75,14 +78,11 @@
         legend: {
           data: ['Güterverkehr', 'Schwerverkehr', 'Kraftfahrzeugverkehr', 'Schwerverkehrsanteil'],
         },
-        // grid: {
-        //   left: '7%',
-        //   right: '5%',
-        //   bottom: '300',
-        //   containLabel: false
-        // },
         xAxis: {
           type: 'category',
+          // axisLabel: {
+          //   rotate: 90
+          // },
           data: [
             '01.01.1990',
             '23.04.2005',
@@ -102,9 +102,6 @@
             min: 0,
             max: 20000,
             interval: 2000,
-            // axisLabel: {
-            //   formatter: '{value} ml'
-            // }
           },
           {
             type: 'value',
@@ -122,7 +119,7 @@
             name: 'Schwerverkehrsanteil',
             type: 'bar',
             yAxisIndex: 1,
-            data: [4, 4, 4, 4, 3]
+            data: [4, 4, 4, 4, 3],
           },
           {
             name: 'Kraftfahrzeugverkehr',
@@ -132,7 +129,7 @@
           {
             name: 'Güterverkehr',
             type: 'bar',
-            data: [400, 450, 450 , 450, 300]
+            data: [400, 450, 450, 450, 300]
           },
           {
             name: 'Schwerverkehr',

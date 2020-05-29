@@ -4,9 +4,9 @@
       :width="width"
       outlined
   >
-    <v-card-title>Nutzung über 24 Stunden</v-card-title>
+    <v-card-title>Vergleich der Belastung pro Zähldatum</v-card-title>
     <v-card-text>
-      Die Grafik zeigt, wieviele Fahrzeuge, wecher Art, zu welcher Zeit, die Zählstelle passiert haben. Wenn Sie mit der
+      Die Grafik zeigt, wieviele Fahrzeuge, wecher Art, die Zählstelle an einem Datum passiert haben. Wenn Sie mit der
       Maus über die Abschnitte fahren, werden Ihnen die genauen Zahlen angezeigt. Fahren Sie mit der Maus unten über die
       Legende, so werden die Abschnitte hervorgehoben, die zur Farbe passen.
     </v-card-text>
@@ -18,17 +18,17 @@
           v-on:change="switchData()"
           label="Knotenpunkte"
       ></v-select>
-      <v-btn
-          @click="takePicture()"
-          title="Chart als Bild herunterladen."
-          icon>
-        <v-icon>mdi-image</v-icon>
-      </v-btn>
-      <v-btn
-          title="Daten als Tabelle herunter laden."
-          icon>
-        <v-icon>mdi-table-large</v-icon>
-      </v-btn>
+<!--      <v-btn-->
+<!--          @click="takePicture()"-->
+<!--          title="Chart als Bild herunterladen."-->
+<!--          icon>-->
+<!--        <v-icon>mdi-image</v-icon>-->
+<!--      </v-btn>-->
+<!--      <v-btn-->
+<!--          title="Daten als Tabelle herunter laden."-->
+<!--          icon>-->
+<!--        <v-icon>mdi-table-large</v-icon>-->
+<!--      </v-btn>-->
     </v-card-actions>
     <v-sheet height="72%">
       <line-bar
@@ -43,7 +43,7 @@
 
   import LineBar from "@/components/charts/LineBar.vue";
 
-  import {base64ToBlob} from "base64-blob"
+  // import {base64ToBlob} from "base64-blob"
 
   @Component({
     components: {
@@ -63,21 +63,21 @@
       return ['Gesamt', 'Donnersberger Brücke (N)', 'Donnersberger Brücke (S)', 'Fehler', 'Ereignis']
     }
 
-    takePicture() {
-
-      const b64 = this.linebar.printImage()
-
-      base64ToBlob(b64)
-          .then((b) => {
-            const name = "linebar.png"
-            const url = URL.createObjectURL(b)
-            const link = document.createElement('a')
-            link.href = url
-            link.download
-            link.setAttribute('download', name)
-            document.body.appendChild(link)
-            link.click()
-          })
-    }
+    // takePicture() {
+    //
+    //   const b64 = this.linebar.printImage()
+    //
+    //   base64ToBlob(b64)
+    //       .then((b) => {
+    //         const name = "linebar.png"
+    //         const url = URL.createObjectURL(b)
+    //         const link = document.createElement('a')
+    //         link.href = url
+    //         link.download
+    //         link.setAttribute('download', name)
+    //         document.body.appendChild(link)
+    //         link.click()
+    //       })
+    // }
   }
 </script>
