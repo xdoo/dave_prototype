@@ -97,11 +97,8 @@
   import Component from 'vue-class-component';
   import TheSnackbar from '@/components/TheSnackbar.vue';
   import SsoUserInfoService from "@/api/service/SsoUserInfoService";
-  import VersionInfoService from "@/api/service/VersionInfoService";
   // eslint-disable-next-line no-unused-vars
   import SsoUserInfoResponse from "@/types/SsoUserInfoResponse";
-  // eslint-disable-next-line no-unused-vars
-  import VersionInfoResponse from "@/types/VersionInfoResponse";
 
   @Component({
     components: {TheSnackbar}
@@ -110,7 +107,7 @@
 
     private hasRelevantRole: boolean = false;
 
-    private loggedInUser: String = "no-security";
+    private loggedInUser: String = "Prototype";
 
     private relevantRole1: string = "ROLE_clientrole_anwender";
     private relevantRole2: string = "ROLE_clientrole_spezialanwender";
@@ -137,13 +134,6 @@
           this.hasRelevantRole = hasRelevantRole;
         })
       }
-      this.getFrontendVersion().then((version: string) => {
-        this.frontendVersion = version;
-      });
-
-      this.getBackendVersion().then((version: string) => {
-        this.backendVersion = version;
-      });
     }
 
     private async hasUserRelevantRole(): Promise<boolean> {
@@ -154,24 +144,6 @@
             return ssoUserInfoResponse.user_roles.includes(this.relevantRole1) || ssoUserInfoResponse.user_roles.includes(this.relevantRole2) || ssoUserInfoResponse.user_roles.includes(this.relevantRole3);
           }).catch(() => {
             return false;
-          });
-    }
-
-    private async getFrontendVersion(): Promise<string> {
-      return await VersionInfoService.getFrontendInfo()
-          .then((frontendInfoResponse: VersionInfoResponse) => {
-            return frontendInfoResponse.application.version;
-          }).catch(() => {
-            return "error";
-          });
-    }
-
-    private async getBackendVersion(): Promise<string> {
-      return await VersionInfoService.getBackendInfo()
-          .then((backendInfoResponse: VersionInfoResponse) => {
-            return backendInfoResponse.application.version;
-          }).catch(() => {
-            return "error";
           });
     }
 
