@@ -21,11 +21,6 @@
               Es werden die Daten der Zählung vom 24.12.2019 angezeigt. Um eine andere Zähldaten anzuzeigen, bitte unten eine entsprechende Zählung auswählen. Die Änderung wirkt sich auf die komplette Seite aus!
             </v-card-text>
             <v-card-actions>
-              <v-select
-                v-model="zaehlung"
-                :items="items"
-                label="Zählung"
-              ></v-select>
             </v-card-actions>
           </v-card>
         </v-col>
