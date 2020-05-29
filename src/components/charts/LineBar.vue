@@ -24,7 +24,6 @@
   import 'echarts/lib/chart/bar'
   import 'echarts/lib/component/tooltip'
   import 'echarts/lib/component/legend'
-  import 'echarts/lib/component/grid'
   import 'echarts/lib/component/toolbox'
 
   @Component
@@ -32,10 +31,6 @@
 
     @Ref('chart') readonly chart!: any
     @Ref('container') readonly container!: HTMLDivElement
-
-    printImage() {
-      return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
-    }
 
     get initOptions() {
       return {
@@ -68,7 +63,7 @@
               }
             },
             restore: {show: true, title: 'Standard'},
-            saveAsImage: {show: true, title: 'Download'}
+            saveAsImage: {show: true, title: 'Download', name: 'Zähldatenvergleich'}
           },
           tooltip: {
             show: true,

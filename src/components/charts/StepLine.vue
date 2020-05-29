@@ -1,9 +1,9 @@
 <template>
-<v-chart 
-    ref="chart"
-    :options="options"
-    autoresize
-    />
+        <v-chart
+            ref="chart"
+            :initOptions="initOptions"
+            :options="options"
+            autoresize/>
 </template>
 <style>
 .echarts {
@@ -19,20 +19,39 @@ import { Component, Ref } from "vue-property-decorator"
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/grid'
-import 'echarts/lib/component/visualMap'
+import 'echarts/lib/component/toolbox'
 
 @Component
 export default class StepLine extends Vue{
 
   @Ref('chart') readonly chart!: any
+    @Ref('container') readonly container!: HTMLDivElement
+
+    get initOptions() {
+        return {
+            dom: this.container
+        }
+    }
   
-  printImage() {
-    return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
-  }
+  // printImage() {
+  //   return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
+  // }
 
   // HACK für Demo!!!
   get options() {
     return {
+    toolbox: {
+        showTitle: false,
+        right: '4%',
+        feature: {
+            saveAsImage: {show: true, title: 'Download', name: 'Gangliniendiagramm'},
+            // dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},
+        },
+        tooltip: {
+            show: true,
+            position: 'top',
+        },
+    },
     tooltip: {
         trigger: 'axis'
     },

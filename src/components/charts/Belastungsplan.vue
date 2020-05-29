@@ -20,6 +20,8 @@
 
   import {Component, Prop, Ref, Vue} from "vue-property-decorator";
   import 'echarts/lib/chart/graph';
+  import 'echarts/lib/component/toolbox'
+  import 'echarts/lib/component/tooltip'
 
 
   @Component
@@ -39,9 +41,9 @@
     @Ref('chart') readonly chart!: any
     @Ref('container') readonly container!: HTMLDivElement
 
-    printImage() {
-      return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
-    }
+    // printImage() {
+    //   return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
+    // }
 
     get initOptions() {
       return {
@@ -51,6 +53,22 @@
 
     get options() {
       return {
+        tooltip: {
+          trigger: 'item',
+          show: false
+        },
+        toolbox: {
+          showTitle: false,
+          right: '2%',
+          feature: {
+            saveAsImage: {show: true, title: 'Download', name: 'Belastungsplan'},
+            // dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},
+          },
+          tooltip: {
+            show: true,
+            position: 'top',
+          },
+        },
         series: [
             // Data Series
           {

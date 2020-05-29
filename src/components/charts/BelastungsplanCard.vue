@@ -9,13 +9,13 @@
       Die Grafik zeigt, wie viele Fahrzeuge der gewählten Kategorien in welche Richtung gefahren sind.
     </v-card-text>
     <v-card-actions>
-      <v-select
-          class="px-2"
-          v-model="node"
-          :items="nodes"
-          v-on:change="switchColor()"
-          label="Knotenarme"
-      ></v-select>
+<!--      <v-select-->
+<!--          class="px-2"-->
+<!--          v-model="node"-->
+<!--          :items="nodes"-->
+<!--          v-on:change="switchColor()"-->
+<!--          label="Knotenarme"-->
+<!--      ></v-select>-->
       <v-select
           class="px-2"
           v-model="fahrzeugklasse"
@@ -23,17 +23,17 @@
           v-on:change="switchFahrzeugklasse()"
           label="Fahrzeugklassen"
       ></v-select>
-      <v-btn
-          @click="takePicture()"
-          title="Chart als Bild herunterladen."
-          icon>
-        <v-icon>mdi-image</v-icon>
-      </v-btn>
-      <v-btn
-          title="Daten als Tabelle herunter laden."
-          icon>
-        <v-icon>mdi-table-large</v-icon>
-      </v-btn>
+<!--      <v-btn-->
+<!--          @click="takePicture()"-->
+<!--          title="Chart als Bild herunterladen."-->
+<!--          icon>-->
+<!--        <v-icon>mdi-image</v-icon>-->
+<!--      </v-btn>-->
+<!--      <v-btn-->
+<!--          title="Daten als Tabelle herunter laden."-->
+<!--          icon>-->
+<!--        <v-icon>mdi-table-large</v-icon>-->
+<!--      </v-btn>-->
     </v-card-actions>
     <v-sheet height="72%">
       <belastungsplan
@@ -51,7 +51,7 @@
 
   import Belastungsplan from "@/components/charts/Belastungsplan.vue";
 
-  import {base64ToBlob} from "base64-blob"
+  // import {base64ToBlob} from "base64-blob"
 
   @Component({
     components: {
@@ -71,22 +71,22 @@
 
     @Ref('belastungsplan') readonly belastungsplan!: Belastungsplan
 
-    takePicture() {
-
-      const b64 = this.belastungsplan.printImage()
-
-      base64ToBlob(b64)
-          .then((b) => {
-            const name = "belastungsplan_" + this.node.toLowerCase() + ".png"
-            const url = URL.createObjectURL(b)
-            const link = document.createElement('a')
-            link.href = url
-            link.download
-            link.setAttribute('download', name)
-            document.body.appendChild(link)
-            link.click()
-          })
-    }
+    // takePicture() {
+    //
+    //   const b64 = this.belastungsplan.printImage()
+    //
+    //   base64ToBlob(b64)
+    //       .then((b) => {
+    //         const name = "belastungsplan_" + this.node.toLowerCase() + ".png"
+    //         const url = URL.createObjectURL(b)
+    //         const link = document.createElement('a')
+    //         link.href = url
+    //         link.download
+    //         link.setAttribute('download', name)
+    //         document.body.appendChild(link)
+    //         link.click()
+    //       })
+    // }
 
 
     switchColor() {

@@ -60,12 +60,12 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col>
+                <v-col cols="12" md="6">
                   <belastungsplan-card
                       height="810"
                   ></belastungsplan-card>
                 </v-col>
-                <v-col>
+                <v-col cols="12" md="6">
                   <stepline-card
                     height="810"
                   ></stepline-card>
