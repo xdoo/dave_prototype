@@ -13,29 +13,9 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-card
-            height="400px"
-            outlined
-        >
-          <v-card-title>Zählung am 05.04.2016 auf der Landshuter Allee</v-card-title>
-          <belastungsplan
-              name="Zählung 05.04.2016"
-              :data="dataBelastungsplan1"
-              :color="colorBelastungsplan">
-          </belastungsplan>
-        </v-card>
-        <v-card
-            height="400px"
-            class="mt-2"
-            outlined
-        >
-          <v-card-title>Zählung am 05.04.2016 auf der Landshuter Allee ohne Knotenarm 3</v-card-title>
-          <belastungsplan
-              name="Zählung 05.04.2016"
-              :data="dataBelastungsplan2"
-              :color="colorBelastungsplan">
-          </belastungsplan>
-        </v-card>
+        <belastungsplan-card
+            height="1000px"
+        ></belastungsplan-card>
       </v-col>
       <v-col>
         <stepline-card
@@ -45,7 +25,7 @@
     </v-row>
     <v-row>
       <v-col>
-        
+
       </v-col>
     </v-row>
     </v-container>
@@ -56,40 +36,19 @@
   import {Component} from "vue-property-decorator"
 
   import HeatmapCard from "@/components/charts/HeatmapCard.vue"
+
+  import BelastungsplanCard from "@/components/charts/BelastungsplanCard.vue";
   import SteplineCard from "@/components/charts/StepLineCard.vue"
-  import Belastungsplan from "@/components/charts/Belastungsplan.vue"
   import ZaehlstelleHeader from "@/components/zaehlstelle/ZaehlstelleHeader.vue"
 
   @Component({
   components: {
     HeatmapCard,
     SteplineCard,
-    Belastungsplan,
-    ZaehlstelleHeader
+    ZaehlstelleHeader,
+    BelastungsplanCard,
   }
 })
 export default class ChartDemoView extends Vue {
-
-  get colorBelastungsplan() {
-    return ['black', 'red', 'green', 'blue', 'yellow', 'purple', 'lime', 'grey'];
-  }
-
-  get dataBelastungsplan1() {
-    return[
-      [202,6099,2077,1324],
-      [5036,0,3282,11179],
-      [983,1680,1682,7085],
-      [80,10349,5028,0],
-    ];
-  }
-  get dataBelastungsplan2() {
-    return[
-      [202,6099,0,1324],
-      [5036,0,0,11179],
-      [0,0,0,0],
-      [80,10349,0,0],
-    ];
-  }
-
 }
 </script>

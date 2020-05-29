@@ -1,12 +1,22 @@
 <template>
-  <v-chart :options="options"
-           autoresize/>
+  <v-chart
+      ref="chart"
+      :options="options"
+      autoresize/>
 </template>
+
+<style>
+  .echarts {
+    width: 100%;
+    height: 100%;
+  }
+</style>
 
 <script lang="ts">
 
-  import {Component, Prop, Vue} from "vue-property-decorator";
+  import {Component, Prop, Ref, Vue} from "vue-property-decorator";
   import 'echarts/lib/chart/graph';
+
 
   @Component
   export default class Belastungsplan extends Vue {
@@ -22,20 +32,22 @@
     private readonly curveness: number = 0.45;
     private readonly maxCurveness: number = 1;
 
+    @Ref('chart') readonly chart!: any
+
+    printImage() {
+      return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
+    }
+
     get options() {
       return {
-        title: {
-          text: 'Belastungsplan'
-        },
         series: [
+            // Data Series
           {
             name: this.name,
             type: 'graph',
             layout: 'none',
             zoom: 0.8,
             symbol: 'none',
-            top: 'top',
-            left: 'left',
             width: 300,
             height: 300,
             // Default SymbolSize
@@ -376,6 +388,200 @@
             lineStyle: {
               opacity: 0.9,
             }
+          },
+            // Info-Label Series
+          {
+            name: this.name,
+            type: 'graph',
+            layout: 'none',
+            zoom: 0.8,
+            symbol: 'none',
+            width: 300,
+            height: 300,
+            // Default SymbolSize
+            edgeSymbolSize: 10,
+            // roam: 'scale',
+            label: {
+              backgroundColor: '#eee',
+              borderColor: '#aaa',
+              borderWidth: 1,
+              borderRadius: 4,
+              rich: {
+                valueLeft: {
+                  color: '#999',
+                  lineHeight: 13,
+                  align: 'left'
+                },
+                dividerLeft: {
+                  color: '#999',
+                  lineHeight: 5,
+                  align: 'left'
+                },
+                valueRight: {
+                  color: '#999',
+                  lineHeight: 13,
+                  align: 'right'
+                },
+                dividerRight: {
+                  color: '#999',
+                  lineHeight: 5,
+                  align: 'right'
+                },
+                name: {
+                  fontSize: 16,
+                  lineHeight: 22,
+                  align: 'center',
+                  color: 'black'
+                },
+              }
+            },
+            data: [
+              // Source: 1
+              {
+                name: '1',
+                data: ['1324', '2077', '6099', '9702', 'Landshuter Allee', '17895', '8193'],
+                x: 545,
+                y: 110,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  formatter: function (params: any) {
+                    return `{valueLeft|${params.data.data[0]} \n${params.data.data[1]} \n${params.data.data[2]} }\n`
+                        + `{dividerLeft|--------}\n {valueLeft|${params.data.data[3]} }\n`
+                        + `{name|${params.data.data[4]}} \n`
+                        + `{valueLeft|${params.data.data[5]} }\n\n\n`
+                        + `{valueLeft|${params.data.data[6]} }`
+                        ;
+                  },
+                  show: true,
+                  rotate: 90,
+                  position: [-60, -10]
+                },
+              },
+              // Source: 2
+              {
+                name: '2',
+                data: ['5036', '11179', '3282', '19497', 'Dachauer Str.', '37625', '18128'],
+                x: 710,
+                y: 275,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  formatter: function (params: any) {
+                    return `{valueLeft|${params.data.data[0]} \n${params.data.data[1]} \n${params.data.data[2]} }\n`
+                        + `{dividerLeft|--------}\n {valueLeft|${params.data.data[3]} }\n`
+                        + `{name|${params.data.data[4]}} \n`
+                        + `{valueLeft|${params.data.data[5]} }\n\n\n`
+                        + `{valueLeft|${params.data.data[6]} }`
+                        ;
+                  },
+                  show: true,
+                  position: [40, -60]
+                }
+              },
+              // Source: 3
+              {
+                name: '3',
+                data: ['7085', '983', '1680', '11430', 'Landshuter Allee', '23499', '12069'],
+                x: 545,
+                y: 440,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  formatter: function (params: any) {
+                    return `{valueRight|${params.data.data[6]} }\n\n\n`
+                        + `{name|${params.data.data[4]}} \n`
+                        + `{valueRight|${params.data.data[5]} }\n\n`
+                        + `{valueRight|${params.data.data[0]} \n${params.data.data[1]} \n${params.data.data[2]} }\n`
+                        + `{dividerRight|--------}\n {valueRight|${params.data.data[3]} }`
+                        ;
+                  },
+                  show: true,
+                  rotate: 90,
+                  position: [-50, 175]
+                }
+              },
+              // Source: 4
+              {
+                name: '4',
+                data: ['1972', '10349', '5028', '17349', 'Dachauer Str.', '36937', '19588'],
+                x: 380,
+                y: 275,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  formatter: function (params: any) {
+                    return `{valueRight|${params.data.data[6]} }\n\n\n`
+                        + `{name|${params.data.data[4]}} \n`
+                        + `{valueRight|${params.data.data[5]} }\n\n`
+                        + `{valueRight|${params.data.data[0]} \n${params.data.data[1]} \n${params.data.data[2]} }\n`
+                        + `{dividerRight|--------}\n {valueRight|${params.data.data[3]} }`
+                        ;
+                  },
+                  show: true,
+                  position: [-125, -60]
+                }
+              },
+            ],
+          },
+            // Dor-Label Series
+          {
+            name: this.name,
+            type: 'graph',
+            layout: 'none',
+            zoom: 0.8,
+            symbol: 'none',
+            width: 300,
+            height: 300,
+            // Default SymbolSize
+            edgeSymbolSize: 10,
+            // roam: 'scale',
+            data: [
+              // Source: 1
+              {
+                name: '1',
+                x: 545,
+                y: 110,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
+              // Source: 2
+              {
+                name: '2',
+                x: 710,
+                y: 275,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
+              // Source: 3
+              {
+                name: '3',
+                x: 545,
+                y: 440,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
+              // Source: 4
+              {
+                name: '4',
+                x: 380,
+                y: 275,
+                symbol: 'circle',
+                symbolSize: 25,
+                label: {
+                  show: true
+                }
+              },
+            ],
           }
         ]
       }
@@ -383,7 +589,7 @@
 
     private calculateLineWidth(cars: number): number {
       let maxWidth = 5;
-      if(cars === 0) {
+      if (cars === 0) {
         return 0;
       }
       if (cars < 100) {
