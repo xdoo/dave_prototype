@@ -60,12 +60,12 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col>
+                <v-col cols="12" md="6">
                   <belastungsplan-card
                       height="810"
                   ></belastungsplan-card>
                 </v-col>
-                <v-col>
+                <v-col cols="12" md="6">
                   <stepline-card
                     height="810"
                   ></stepline-card>
@@ -73,7 +73,9 @@
               </v-row>
               <v-row>
                 <v-col>
-
+                  <line-bar-card
+                      height="810">
+                  </line-bar-card>
                 </v-col>
               </v-row>
             </v-container>
@@ -93,6 +95,7 @@
   import HeatmapCard from "@/components/charts/HeatmapCard.vue"
   import BelastungsplanCard from "@/components/charts/BelastungsplanCard.vue";
   import SteplineCard from "@/components/charts/StepLineCard.vue"
+  import LineBarCard from "@/components/charts/LineBarCard.vue";
   import ZaehlstelleHeader from "@/components/zaehlstelle/ZaehlstelleHeader.vue"
 
   @Component({
@@ -101,6 +104,7 @@
     SteplineCard,
     ZaehlstelleHeader,
     BelastungsplanCard,
+    LineBarCard,
     DummyMap
   }
 })

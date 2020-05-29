@@ -1,9 +1,9 @@
 <template>
-  <v-chart 
-    ref="chart"
-    :options="options"
-    autoresize
-    />
+    <v-chart
+        ref="chart"
+        :initOptions="initOptions"
+        :options="options"
+        autoresize/>
 </template>
 <style>
 .echarts {
@@ -20,6 +20,7 @@ import 'echarts/lib/chart/heatmap'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/grid'
 import 'echarts/lib/component/visualMap'
+import 'echarts/lib/component/toolbox'
 
 @Component
 export default class Heatmap extends Vue {
@@ -32,10 +33,16 @@ export default class Heatmap extends Vue {
   @Prop({default: 100}) readonly rangeMax!: number
 
   @Ref('chart') readonly chart!: any
+  @Ref('container') readonly container!: HTMLDivElement
 
-  printImage() {
-    return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
+  get initOptions() {
+    return {
+      dom: this.container
+    }
   }
+  // printImage() {
+  //   return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
+  // }
 
   get color() {
     return this.rangeMin < 0 ? ['#4575b4', '#d88273', '#bf444c'] : ['#f6efa6', '#d88273', '#bf444c']
@@ -46,6 +53,18 @@ export default class Heatmap extends Vue {
     console.log(this.color)
 
     return {
+      toolbox: {
+        showTitle: false,
+        right: '2%',
+        feature: {
+          saveAsImage: {show: true, title: 'Download', name: 'Heatmap'},
+          // dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},
+        },
+        tooltip: {
+          show: true,
+          position: 'top',
+        },
+      },
         tooltip: {
             position: 'top'
         },

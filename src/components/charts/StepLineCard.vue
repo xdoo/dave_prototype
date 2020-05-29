@@ -16,17 +16,17 @@
           v-on:change="switchData()"
           label="Knotenpunkte"
         ></v-select>
-        <v-btn
-          @click="takePicture()"
-          title="Chart als Bild herunterladen." 
-          icon>
-          <v-icon>mdi-image</v-icon>
-        </v-btn>
-        <v-btn 
-          title="Daten als Tabelle herunter laden."
-          icon>
-          <v-icon>mdi-table-large</v-icon>
-        </v-btn>
+<!--        <v-btn-->
+<!--          @click="takePicture()"-->
+<!--          title="Chart als Bild herunterladen." -->
+<!--          icon>-->
+<!--          <v-icon>mdi-image</v-icon>-->
+<!--        </v-btn>-->
+<!--        <v-btn -->
+<!--          title="Daten als Tabelle herunter laden."-->
+<!--          icon>-->
+<!--          <v-icon>mdi-table-large</v-icon>-->
+<!--        </v-btn>-->
     </v-card-actions>
     <step-line
       ref="stepline"
@@ -39,7 +39,7 @@ import { Component, Prop, Ref } from "vue-property-decorator"
 
 import StepLine from "@/components/charts/StepLine.vue"
 
-import { base64ToBlob } from "base64-blob"
+// import { base64ToBlob } from "base64-blob"
 
 @Component({
   components: {
@@ -59,21 +59,21 @@ export default class StepLineCard extends Vue {
     return ['Gesamt', 'Donnersberger Brücke (N)', 'Donnersberger Brücke (S)', 'Fehler', 'Ereignis']
   }
 
-  takePicture() {
-
-    const b64 = this.stepline.printImage()
-    
-    base64ToBlob(b64)
-    .then((b) => {
-      const name = "stepline.png"
-      const url = URL.createObjectURL(b)
-      const link = document.createElement('a')
-      link.href = url
-      link.download
-      link.setAttribute('download', name)
-      document.body.appendChild(link)
-      link.click()
-    })
-  }
+  // takePicture() {
+  //
+  //   const b64 = this.stepline.printImage()
+  //
+  //   base64ToBlob(b64)
+  //   .then((b) => {
+  //     const name = "stepline.png"
+  //     const url = URL.createObjectURL(b)
+  //     const link = document.createElement('a')
+  //     link.href = url
+  //     link.download
+  //     link.setAttribute('download', name)
+  //     document.body.appendChild(link)
+  //     link.click()
+  //   })
+  // }
 }
 </script>
