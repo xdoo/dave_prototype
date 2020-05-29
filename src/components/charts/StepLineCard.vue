@@ -4,7 +4,7 @@
     :width="width"
     outlined
   > 
-    <v-card-title>Nutzung über 24 Stunden</v-card-title>
+    <v-card-title>Belastung nach Zeit und Fahrzeugen</v-card-title>
     <v-card-text>
       Die Grafik zeigt, wieviele Fahrzeuge, wecher Art, zu welcher Zeit, die Zählstelle passiert haben. Wenn Sie mit der Maus über die Abschnitte fahren, werden Ihnen die genauen Zahlen angezeigt. Fahren Sie mit der Maus unten über die Legende, so werden die Abschnitte hervorgehoben, die zur Farbe passen.
     </v-card-text>

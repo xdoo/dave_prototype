@@ -4,7 +4,7 @@
       :width="width"
       outlined
   >
-    <v-card-title>Nutzung über 24 Stunden</v-card-title>
+    <v-card-title>Belastung nach Knotenarmen</v-card-title>
     <v-card-text>
       Die Grafik zeigt, wie viele Fahrzeuge der gewählten Kategorien in welche Richtung gefahren sind.
     </v-card-text>
