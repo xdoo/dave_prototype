@@ -1,9 +1,14 @@
 <template>
-  <v-chart
-      ref="chart"
-      :options="options"
-      autoresize
-  />
+  <v-sheet
+      ref="container"
+      width="100%"
+      height="100%">
+    <v-chart
+        ref="chart"
+        :initOptions="initOptions"
+        :options="options"
+        autoresize/>
+  </v-sheet>
 </template>
 <style>
   .echarts {
@@ -26,9 +31,16 @@
   export default class LineBar extends Vue {
 
     @Ref('chart') readonly chart!: any
+    @Ref('container') readonly container!: HTMLDivElement
 
     printImage() {
       return this.chart.getDataURL({type: "png", backgroundColor: '#fff'})
+    }
+
+    get initOptions() {
+      return {
+        dom: this.container
+      }
     }
 
     // HACK für Demo!!!
@@ -44,12 +56,21 @@
           // }
         },
         toolbox: {
+          showTitle: false,
           feature: {
-            dataView: {show: true, readOnly: false},
-            magicType: {show: true, type: ['line', 'bar']},
-            restore: {show: true},
-            saveAsImage: {show: true}
-          }
+            dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},
+            magicType: {show: true, type: ['line', 'bar', 'stack'], title: {
+              line: 'Linie',
+                bar: 'Balken',
+                stack: 'Gestapelt'
+              }},
+            restore: {show: true, title: 'Standard'},
+            saveAsImage: {show: true, title: 'Download'}
+          },
+          tooltip: {
+            show: true,
+            position: 'top',
+          },
         },
         legend: {
           data: ['Güterverkehr', 'Schwerverkehr', 'Kraftfahrzeugverkehr', 'Schwerverkehrsanteil'],
@@ -98,6 +119,17 @@
         ],
         series: [
           {
+            name: 'Schwerverkehrsanteil',
+            type: 'bar',
+            yAxisIndex: 1,
+            data: [4, 4, 4, 4, 3]
+          },
+          {
+            name: 'Kraftfahrzeugverkehr',
+            type: 'bar',
+            data: [12500, 14000, 16300, 17000, 15500]
+          },
+          {
             name: 'Güterverkehr',
             type: 'bar',
             data: [400, 450, 450 , 450, 300]
@@ -107,17 +139,6 @@
             type: 'bar',
             data: [500, 600, 650, 650, 500]
           },
-          {
-            name: 'Kraftfahrzeugverkehr',
-            type: 'bar',
-            data: [12500, 14000, 16300, 17000, 15500]
-          },
-          {
-            name: 'Schwerverkehrsanteil',
-            type: 'line',
-            yAxisIndex: 1,
-            data: [4, 4, 4, 4, 3]
-          }
         ]
       }
     }
