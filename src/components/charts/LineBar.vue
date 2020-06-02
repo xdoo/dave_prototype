@@ -79,12 +79,35 @@
           showTitle: false,
           right: '2%',
           feature: {
-            dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},
+            dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh'],
+              optionToContent: function(opt:any) {
+                let axisData = opt.xAxis[0].data;
+                let series = opt.series;
+                let table = '<table style="width:100%;text-align:center"><tbody><tr>'
+                    + '<td>Zähldatum</td>'
+                    + '<td>' + series[0].name + '</td>'
+                    + '<td>' + series[1].name + '</td>'
+                    + '<td>' + series[2].name + '</td>'
+                    + '<td>' + series[3].name + '</td>'
+                    + '<td>' + series[4].name + '</td>'
+                    + '</tr>';
+                for (let i = 0, l = axisData.length; i < l; i++) {
+                  table += '<tr>'
+                      + '<td>' + axisData[i] + '</td>'
+                      + '<td>' + series[0].data[i] + '%</td>'
+                      + '<td>' + series[1].data[i] + '</td>'
+                      + '<td>' + series[2].data[i] + '</td>'
+                      + '<td>' + series[3].data[i] + '</td>'
+                      + '<td>' + series[4].data[i] + '</td>'
+                      + '</tr>';
+                }
+                table += '</tbody></table>';
+                return table;
+              }},
             magicType: {
               show: true, type: ['line', 'bar'], title: {
-                // line: 'Linie',
-                // bar: 'Balken',
-                // stack: 'Gestapelt'
+                line: 'Linie',
+                bar: 'Balken',
               }
             },
             restore: {show: true, title: 'Standard'},
