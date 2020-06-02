@@ -81,7 +81,7 @@
               <v-row>
                 <v-col>
                   <list-card
-                      height="810">
+                      height="400">
                   </list-card>
                 </v-col>
               </v-row>

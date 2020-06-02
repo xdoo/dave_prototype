@@ -10,6 +10,11 @@
         fixed-header
         loading-text="Lade Daten....."
         :items-per-page="5"
+        :footer-props="{
+          // disableItemsPerPage: true,
+          showFirstLastPage: true,
+          showCurrentPage: true
+        }"
     >
       <template v-slot:no-data>
         ⚠ Keine Ergebnisse gefunden.
@@ -49,8 +54,8 @@
     get zeitintervalle() {
 
       let dataArray = [];
-      for(let index:number = 0; index < 96; index++) {
-        let data:ZeitintervallObject = {} as ZeitintervallObject;
+      for (let index: number = 0; index < 96; index++) {
+        let data: ZeitintervallObject = {} as ZeitintervallObject;
         data.zeitintervall = this.getZeitintervall(index);
         data.pkw = this.getRndInteger(10, 100);
         data.lkw = this.getRndInteger(0, 15);
@@ -66,8 +71,8 @@
         dataArray.push(data);
 
         // Stundensatz anlegen
-        if(index%4 === 3) {
-          let dataHour:ZeitintervallObject = {} as ZeitintervallObject;
+        if (index % 4 === 3) {
+          let dataHour: ZeitintervallObject = {} as ZeitintervallObject;
           let element0 = dataArray[dataArray.length - 4];
           let element1 = dataArray[dataArray.length - 3];
           let element2 = dataArray[dataArray.length - 2];
@@ -89,11 +94,11 @@
       return dataArray;
     }
 
-    private getRndInteger(min:number, max:number) {
-      return Math.floor(Math.random() * (max - min) ) + min;
+    private getRndInteger(min: number, max: number) {
+      return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    private getZeitintervall(index:number) {
+    private getZeitintervall(index: number) {
       // let hourAsString = `${Math.floor(index/4)}`
       // if(hourAsString.length < 2) {
       //   hourAsString = `0${hourAsString}`;
@@ -102,19 +107,18 @@
       // if(nextHourAsString.length < 2) {
       //   nextHourAsString = `0${nextHourAsString}`;
       // }
-      return `${this.getHours(index)}:${this.getMinutes(index)} - ${this.getHours(index+1)}:${this.getMinutes(index+1)}`
+      return `${this.getHours(index)}:${this.getMinutes(index)} - ${this.getHours(index + 1)}:${this.getMinutes(index + 1)}`
     }
 
-    private getHours(index:number) {
-      let hourAsString = `${Math.floor(index/4)}`
+    private getHours(index: number) {
+      let hourAsString = `${Math.floor(index / 4)}`
       return hourAsString.length < 2 ? `0${hourAsString}` : hourAsString;
     }
 
-    private getMinutes(index:number) {
-      let minuteAsString = `${(index%4)*15}`;
+    private getMinutes(index: number) {
+      let minuteAsString = `${(index % 4) * 15}`;
       return minuteAsString.length < 2 ? `0${minuteAsString}` : minuteAsString;
     }
-
 
 
   }
