@@ -51,26 +51,6 @@
       let dataArray = [];
       for(let index:number = 0; index < 96; index++) {
         let data:ZeitintervallObject = {} as ZeitintervallObject;
-        // // Stundensatz anlegen
-        // if(index !== 0 && index%4 === 0) {
-        //   let dataHour:ZeitintervallObject = {} as ZeitintervallObject;
-        //   dataHour.zeitintervall = 'TODO';
-        //   let element0 = dataArray[index - 4];
-        //   let element1 = dataArray[index - 3];
-        //   let element2 = dataArray[index - 2];
-        //   let element3 = dataArray[index - 1];
-        //   dataHour.pkw = element0.pkw + element1.pkw + element2.pkw + element3.pkw;
-        //   dataHour.lkw = element0.lkw + element1.lkw + element2.lkw + element3.lkw;
-        //   dataHour.lz = element0.lz + element1.lz + element2.lz + element3.lz;
-        //   dataHour.bus = element0.bus + element1.bus + element2.bus + element3.bus;
-        //   dataHour.krd = element0.krd + element1.krd + element2.krd + element3.krd;
-        //   dataHour.rad = element0.rad + element1.rad + element2.rad + element3.rad;
-        //   dataHour.fus = element0.fus + element1.fus + element2.fus + element3.fus;
-        //   dataHour.gv = element0.gv + element1.gv + element2.gv + element3.gv;
-        //   dataHour.sv = element0.sv + element1.sv + element2.sv + element3.sv;
-        //   dataHour.kfz = element0.kfz + element1.kfz + element2.kfz + element3.kfz;
-        //   dataArray.push(dataHour);
-        // }
         data.zeitintervall = this.getZeitintervall(index);
         data.pkw = this.getRndInteger(10, 100);
         data.lkw = this.getRndInteger(0, 15);
