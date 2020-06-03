@@ -20,6 +20,12 @@
         <h2>
           Datenbank und Auswertungen von Verkehrszählungen
         </h2>
+        <v-btn
+            id="chart-demo-btn"
+            :to="{path: '/chartdemo'}"
+        >
+          <v-icon>mdi-google-downasaur</v-icon>
+        </v-btn>
       </v-flex>
     </v-layout>
   </v-container>

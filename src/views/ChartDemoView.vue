@@ -78,6 +78,13 @@
                   </line-bar-card>
                 </v-col>
               </v-row>
+              <v-row>
+                <v-col>
+                  <list-card
+                      height="400">
+                  </list-card>
+                </v-col>
+              </v-row>
             </v-container>
           </v-row>
         </v-container>
@@ -97,6 +104,7 @@
   import SteplineCard from "@/components/charts/StepLineCard.vue"
   import LineBarCard from "@/components/charts/LineBarCard.vue";
   import ZaehlstelleHeader from "@/components/zaehlstelle/ZaehlstelleHeader.vue"
+  import ListCard from "@/components/charts/ListCard.vue";
 
   @Component({
   components: {
@@ -105,7 +113,8 @@
     ZaehlstelleHeader,
     BelastungsplanCard,
     LineBarCard,
-    DummyMap
+    DummyMap,
+    ListCard
   }
 })
 export default class ChartDemoView extends Vue {

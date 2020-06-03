@@ -43,6 +43,31 @@
       return {
         tooltip: {
           trigger: 'axis',
+          formatter: function (params: any) {
+            const param0 = params[0];
+            const param1 = params[1];
+            const param2 = params[2];
+            const param3 = params[3];
+            const param4 = params[4];
+            let text= '';
+            if(param0) {
+              text += `${param0.name} <br/>`;
+              text += `<span style="color:${param0.color}">\u25CF</span> ${param0.seriesName}: ${param0.data}%<br/>`;
+            }
+            if(param1) {
+              text += `<span style="color:${param1.color}">\u25CF</span> ${param1.seriesName}: ${param1.data}<br/>`;
+            }
+            if(param2) {
+              text += `<span style="color:${param2.color}">\u25CF</span> ${param2.seriesName}: ${param2.data}<br/>`;
+            }
+            if(param3) {
+              text += `<span style="color:${param3.color}">\u25CF</span> ${param3.seriesName}: ${param3.data}<br/>`;
+            }
+            if(param4) {
+              text += `<span style="color:${param4.color}">\u25CF</span> ${param4.seriesName}: ${param4.data}<br/>`;
+            }
+            return text;
+          },
           // axisPointer: {
           //     type: 'cross',
           //     crossStyle: {
@@ -54,12 +79,35 @@
           showTitle: false,
           right: '2%',
           feature: {
-            dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},
+            dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh'],
+              optionToContent: function(opt:any) {
+                let axisData = opt.xAxis[0].data;
+                let series = opt.series;
+                let table = '<table style="width:100%;text-align:center"><tbody><tr>'
+                    + '<td>Zähldatum</td>'
+                    + '<td>' + series[0].name + '</td>'
+                    + '<td>' + series[1].name + '</td>'
+                    + '<td>' + series[2].name + '</td>'
+                    + '<td>' + series[3].name + '</td>'
+                    + '<td>' + series[4].name + '</td>'
+                    + '</tr>';
+                for (let i = 0, l = axisData.length; i < l; i++) {
+                  table += '<tr>'
+                      + '<td>' + axisData[i] + '</td>'
+                      + '<td>' + series[0].data[i] + '%</td>'
+                      + '<td>' + series[1].data[i] + '</td>'
+                      + '<td>' + series[2].data[i] + '</td>'
+                      + '<td>' + series[3].data[i] + '</td>'
+                      + '<td>' + series[4].data[i] + '</td>'
+                      + '</tr>';
+                }
+                table += '</tbody></table>';
+                return table;
+              }},
             magicType: {
-              show: true, type: ['line', 'bar', 'stack'], title: {
+              show: true, type: ['line', 'bar'], title: {
                 line: 'Linie',
                 bar: 'Balken',
-                stack: 'Gestapelt'
               }
             },
             restore: {show: true, title: 'Standard'},
@@ -71,7 +119,7 @@
           },
         },
         legend: {
-          data: ['Güterverkehr', 'Schwerverkehr', 'Kraftfahrzeugverkehr', 'Schwerverkehrsanteil'],
+          data: ['Kraftfahrzeugverkehr', 'Güterverkehr', 'Schwerverkehr',  'Gesamt', 'Schwerverkehrsanteil'],
         },
         xAxis: {
           type: 'category',
@@ -112,7 +160,7 @@
         series: [
           {
             name: 'Schwerverkehrsanteil',
-            type: 'bar',
+            type: 'line',
             yAxisIndex: 1,
             data: [4, 4, 4, 4, 3],
           },
@@ -130,6 +178,11 @@
             name: 'Schwerverkehr',
             type: 'bar',
             data: [500, 600, 650, 650, 500]
+          },
+          {
+            name: 'Gesamt',
+            type: 'bar',
+            data: [13400, 15050, 17400, 18100, 16300],
           },
         ]
       }
