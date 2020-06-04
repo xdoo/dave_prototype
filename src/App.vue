@@ -150,7 +150,7 @@
     //Navigiert zur Seite mit den Suchergebnissen und sendet ein Event zum Auslösen weiterer Suchen.
     private quickSearch() {
       if (this.searchQuery !== '' && this.searchQuery != null) {
-        this.$router.push(`/zaehlstelleoverview/${this.searchQuery}`);
+        // this.$router.push(`/zaehlstelleoverview/${this.searchQuery}`);
       }
     }
 
