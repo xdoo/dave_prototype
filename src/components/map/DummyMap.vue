@@ -8,51 +8,20 @@
         :zoom="zoom"
         :center="center"
         style="z-index: 1">
-      <l-marker :lat-lng="marker1" v-if="showMarker" @click="showMe">
+      <l-marker
+        v-for="marker in markers"
+        :key="marker.lat"
+        :lat-lng="createLatLng(marker.lat, marker.lng)"
+        @click="showMe"
+      >
         <l-tooltip :options="{
             direction: 'top'
         }">
           <div>
-            Zählstelle: Westend<br/>
-            Stadtbezirk: 14 <br/>
-            Anzahl der Zählungen: 1 <br/>
-            Letzte Zählung: 27.02.2020  <br/>
-          </div>
-        </l-tooltip>
-      </l-marker>
-      <l-marker :lat-lng="marker2" v-if="showMarker" @click="showMe">
-        <l-tooltip :options="{
-            direction: 'top'
-        }">
-          <div>
-            Zählstelle: Steubenplatz<br/>
-            Stadtbezirk: 12 <br/>
-            Anzahl der Zählungen: 5 <br/>
-            Letzte Zählung: 13.05.2020  <br/>
-          </div>
-        </l-tooltip>
-      </l-marker>
-      <l-marker :lat-lng="marker3" v-if="showMarker" @click="showMe">
-        <l-tooltip :options="{
-            direction: 'top'
-        }">
-          <div>
-            Zählstelle: Laimerunterführung<br/>
-            Stadtbezirk: 8 <br/>
-            Anzahl der Zählungen: 2 <br/>
-            Letzte Zählung: 02.07.2018  <br/>
-          </div>
-        </l-tooltip>
-      </l-marker>
-      <l-marker :lat-lng="marker" @click="showMe">
-        <l-tooltip :options="{
-            direction: 'top'
-        }">
-          <div>
-            Zählstelle: Donnersberger Brücke<br/>
-            Stadtbezirk: 8 <br/>
-            Anzahl der Zählungen: 4 <br/>
-            Letzte Zählung: 24.12.2019  <br/>
+            <b>{{marker.counter}}</b><br/>
+            Stadtbezirk: {{marker.districtNumber}} <br/>
+            Anzahl der Zählungen: {{marker.countsNum}} <br/>
+            Letzte Zählung: {{marker.lastCount}}  <br/>
           </div>
         </l-tooltip>
       </l-marker>
@@ -81,7 +50,7 @@
 
     @Prop({default: "180px"}) readonly height!: string;
     @Prop({default: "100%"}) readonly width!: string;
-    @Prop({default: 14}) zoom!: number;
+    @Prop({default: 12}) zoom!: number;
     @Prop({default: latLng(48.142537,11.534742)}) center!: LatLng;
 
 
@@ -94,14 +63,26 @@
     url: string = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     attribution: string = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
-    // Marker
-    marker: LatLng = latLng(48.142537,11.534742)
-    marker1: LatLng = latLng(48.134294,11.522714)
-    marker2: LatLng = latLng(48.150122,11.520306)
-    marker3: LatLng = latLng(48.143104,11.503206)
-
     private showMe() {
       this.$router.push(`/chartdemo`);
+    }
+
+    createLatLng(lat: string, lng: string) {
+      return latLng(parseFloat(lat), parseFloat(lng))
+    }
+
+    get markers () {
+      return [
+        {districtNumber: '13', district: 'Bogenhausen', counter: 'Kreuzung Denninger Str. /  Vollmannstr.', streets: 'Denninger Str., Vollmannstr.', lng: '11.6261303', lat: '48.147486', countsNum: '4', lastCount: '11.07.2019', keywords: ''},
+        {districtNumber: '13', district: 'Bogenhausen', counter: 'Luitpoldbrücke', streets: 'Luitpoldbrücke', lng: '11.5939997', lat: '48.141759', countsNum: '6', lastCount: '17.06.2018', keywords: 'Isar'},
+        {districtNumber: '13', district: 'Bogenhausen', counter: 'Max-Joseph-Brücke', streets: 'Max-Joseph-Brücke', lng: '11.5979578', lat: '48.149204', countsNum: '3', lastCount: '20.03.2020', keywords: 'Isar'},
+        {districtNumber: '13', district: 'Bogenhausen', counter: 'Truderinger Str.', streets: 'Truderinger Str.', lng: '11.6326668', lat: '48.135299', countsNum: '6', lastCount: '15.12.2019', keywords: 'Bahn'},
+        {districtNumber: '13', district: 'Bogenhausen', counter: 'Effnerplatz', streets: 'Effnerplatz, Effnerstr., Bülowstr., Richard-Strauss-Str.', lng: '11.6135198', lat: '48.152782', countsNum: '8', lastCount: '12.01.2020', keywords: ''},
+        {districtNumber: '8', district: 'Schwanthalerhöhe', counter: 'Donnersberger Brücke', streets: 'Donnersberger Brücke', lng: '11.5323823', lat: '48.141895', countsNum: '4', lastCount: '15.06.2019', keywords: 'Bahn'},
+        {districtNumber: '8', district: 'Schwanthalerhöhe', counter: 'Kreuzung Trappentreustr. / Donnersbergerbrücke', streets: 'Trappentreustr., Donnersbergerbrücke', lng: '11.5324463', lat: '48.13994', countsNum: '5', lastCount: '11.02.2018', keywords: ''},
+        {districtNumber: '8', district: 'Schwanthalerhöhe', counter: 'Kreuzung Westend- / Bergmannstr.', streets: 'Westendstr., Bergmannstr.', lng: '11.5371788', lat: '48.138163', countsNum: '7', lastCount: '11.02.2018', keywords: ''},
+        {districtNumber: '8', district: 'Schwanthalerhöhe', counter: 'Kreuzung Guldein- / Astallerstr.', streets: 'Guldeinstr., Astallerstr.', lng: '11.5306388', lat: '48.138784', countsNum: '3', lastCount: '11.02.2018', keywords: ''}
+      ]
     }
   }
 </script>
