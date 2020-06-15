@@ -32,7 +32,7 @@
               Kann Später für die Schnellsuche verwendet werden.
             -->
 
-      <v-text-field
+      <v-autocomplete
           id="suchfeld"
           flat
           solo-inverted
@@ -44,7 +44,32 @@
           prepend-inner-icon="mdi-magnify"
           @keyup.enter="quickSearch"
           color="black"
-      ></v-text-field>
+          :items="suggests"
+      >
+        <template v-slot:no-data>
+          <v-list class="pa-3">
+            <v-list-item-title>
+              Kein Suchergebnis...
+            </v-list-item-title>
+          </v-list>
+        </template>
+        <template v-slot:item="{ item }">
+          <v-list-item-content>
+            <v-list-item-title v-if="item.type === 'search'">
+              <v-icon small>mdi-magnify</v-icon>
+              {{item.text}}
+            </v-list-item-title>
+            <v-list-item-title v-if="item.type === 'count'" @click="showMe">
+              <v-icon small>mdi-counter</v-icon>
+              {{item.text}}
+            </v-list-item-title>
+            <v-list-item-title v-if="item.type === 'counter'" @click="showMe">
+              <v-icon small >mdi-map-marker</v-icon>
+              {{item.text}}
+            </v-list-item-title>
+          </v-list-item-content>
+        </template>
+      </v-autocomplete>
 
       <v-spacer></v-spacer>
       <span> {{ this.loggedInUser }} </span>
@@ -152,6 +177,34 @@
       if (this.searchQuery !== '' && this.searchQuery != null) {
         // this.$router.push(`/zaehlstelleoverview/${this.searchQuery}`);
       }
+    }
+
+    private showMe() {
+      this.$router.push(`/chartdemo`);
+    }
+
+    get suggests() {
+      return [
+        {text: '1 Altstadt - Lehel', type: 'search', counterId: '', countId: ''},
+        {text: '10 Moosach', type: 'search', counterId: '', countId: ''},
+        {text: '11 Milbertshofen - Am Hart', type: 'search', counterId: '', countId: ''},
+        {text: '12 Schwabing - Freimann', type: 'search', counterId: '', countId: ''},
+        {text: '13 Bogenhausen', type: 'search', counterId: '', countId: ''},
+        {text: 'Bogenhausen', type: 'search', counterId: '', countId: ''},
+        {text: 'Bogenhausen Isar', type: 'search', counterId: '', countId: ''},
+        {text: 'Bogenhausen Denninger Str. / Vollmannstr.', type: 'counter', counterId: '14587', countId: ''},
+        {text: 'Denniger Str. / Vollmannstr. ', type: 'counter', counterId: '14587', countId: ''},
+        {text: 'Bogenhausen Truderinger Str. ', type: 'counter', counterId: '96231', countId: ''},
+        {text: '8 Schwanthalerhöhe', type: 'search', counterId: '', countId: ''},
+        {text: 'Schwanthalerhöhe', type: 'search', counterId: '', countId: ''},
+        {text: 'Schwanthalerhöhe Donnersberger Brücke', type: 'counter', counterId: '29691', countId: ''},
+        {text: 'Donnersberger Brücke', type: 'counter', counterId: '29691', countId: ''},
+        {text: '24.12.2019 Donnersberger Brücke', type: 'count', counterId: '', countId: '10869'},
+        {text: '16.04.2018 Donnerberger Brücke', type: 'count', counterId: '', countId: '55698'},
+        {text: '12.08.2015 Donnersberger Brücke', type: 'count', counterId: '', countId: '82672'},
+        {text: '16.04.2018 Denninger Str.', type: 'count', counterId: '', countId: '43897'},
+        {text: 'AZ4711 16.04.2018 Donnersbergerbrücke ', type: 'count', counterId: '', countId: '55698'}
+      ]
     }
 
   }
