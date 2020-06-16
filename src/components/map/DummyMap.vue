@@ -13,7 +13,7 @@
         :key="marker.id"
         :lat-lng="createLatLng(marker.lat, marker.lng)"
         :options="options(marker.id)"
-        @click="showMe"
+        @click="showMe(marker.id)"
       >
         <l-tooltip :options="{
             direction: 'top'
@@ -53,7 +53,7 @@
     @Prop({default: "180px"}) readonly height!: string;
     @Prop({default: "100%"}) readonly width!: string;
     @Prop({default: 12}) zoom!: number;
-    @Prop({default: latLng(48.142537,11.534742)}) center!: LatLng;
+    //@Prop({default: latLng(48.142537,11.534742)}) center!: LatLng;
 
     @Prop() selectedMarkerId!: string
 
@@ -66,8 +66,18 @@
     url: string = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     attribution: string = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
-    private showMe() {
-      this.$router.push(`/chartdemo`);
+    private showMe(id: string) {
+      this.$router.push("/chartdemo/" + id );
+    }
+
+    get center() {
+      if(this.selectedMarkerId) {
+        const counters = this.counters.filter(counter => counter.id === this.selectedMarkerId)
+        return this.createLatLng(counters[0].lat, counters[0].lng)
+      } else {
+        // Mitte von München
+        return this.createLatLng("48.137227","11.575517")
+      }
     }
 
     createLatLng(lat: string, lng: string) {

@@ -3,7 +3,7 @@
     <v-row no-gutters>
       <dummy-map
         :zoom="14"
-        selected-marker-id="6"
+        :selected-marker-id="markerId"
       ></dummy-map>
     </v-row>
     <v-row>
@@ -135,6 +135,10 @@ export default class ChartDemoView extends Vue {
 
   dummyClick() {
     console.log("happy click :)")
+  }
+
+  get markerId() {
+    return this.$route.params.id
   }
 
 }

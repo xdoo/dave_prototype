@@ -4,7 +4,6 @@
       width="100%"
       show-marker=true
       :zoom="12"
-      :center="center"
   />
 <!--  <v-container>-->
 <!--    <v-layout-->
