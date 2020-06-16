@@ -45,6 +45,7 @@
           @keyup.enter="quickSearch"
           color="black"
           :items="suggests"
+          return-object
       >
         <template v-slot:no-data>
           <v-list class="pa-3">
@@ -143,7 +144,7 @@
     private backendVersion: string = "";
     private frontendVersion: string = "";
 
-    private searchQuery: string = '';
+    private searchQuery: any = {};
     private drawer: boolean = true;
 
     // mounted() {
@@ -176,6 +177,8 @@
     private quickSearch() {
       if (this.searchQuery !== '' && this.searchQuery != null) {
         // this.$router.push(`/zaehlstelleoverview/${this.searchQuery}`);
+        console.log("query - " + this.searchQuery.ids)
+        this.$store.dispatch('search/dummyresult', this.searchQuery.ids)
       }
     }
 

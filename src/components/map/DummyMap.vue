@@ -73,6 +73,20 @@
     }
 
     get markers () {
+      const dummyresult = this.$store.getters["search/dummyresult"]
+      if(Array.isArray(dummyresult)) {
+        if (dummyresult.length > 0) {
+          return this.counters.filter(counter => dummyresult.includes(parseInt(counter.id)))
+        } else {
+          return this.counters
+        }
+      } else {
+        console.log("no array")
+        return this.counters
+      }
+    }
+
+    get counters (): any[] {
       return [
         {id: '1', districtNumber: '13', district: 'Bogenhausen', counter: 'Kreuzung Denninger Str. /  Vollmannstr.', streets: 'Denninger Str., Vollmannstr.', lng: '11.6261303', lat: '48.147486', countsNum: '4', lastCount: '11.07.2019', keywords: '', reason: 'Ampelschaltung'},
         {id: '2', districtNumber: '13', district: 'Bogenhausen', counter: 'Luitpoldbrücke', streets: 'Luitpoldbrücke', lng: '11.5939997', lat: '48.141759', countsNum: '6', lastCount: '17.06.2018', keywords: 'Isar', reason: 'Umbau Straße'},
