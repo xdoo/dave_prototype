@@ -78,9 +78,9 @@
 
     @Ref('belastungsplan') readonly belastungsplan!: BelastungsplanCircle
 
-    mounted() {
-      this.switchNumberOfNodes();
-    }
+    // mounted() {
+    //   this.switchNumberOfNodes();
+    // }
 
     switchColor() {
       // HACK !!!
@@ -122,114 +122,114 @@
       }
     }
 
-    switchNumberOfNodes() {
-
-      this.resetData();
-
-      let missingNodes:string[] = cloneDeep(this.defaultNodes);
-      for(let node of this.nodes) {
-          // Wenn vorhanden, dann aus missingNodes entfernen
-          missingNodes = missingNodes.filter(el => el !== node);
-      }
-      let newData:any[] = cloneDeep(this.data);
-      let matrix: number[][] = [[1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1]];
-      this.visibleNodes = [true,true,true,true,true,true,true,true];
-      for(let node of missingNodes) {
-        if(node === this.defaultNodes[0]) {
-          this.visibleNodes[0] = false;
-          matrix[0] = [0,0,0,0,0,0,0,0];
-          matrix[1][0] = 0;
-          matrix[2][0] = 0;
-          matrix[3][0] = 0;
-          matrix[4][0] = 0;
-          matrix[5][0] = 0;
-          matrix[6][0] = 0;
-          matrix[7][0] = 0;
-        }
-        if(node === this.defaultNodes[1]) {
-          this.visibleNodes[1] = false;
-          matrix[0][1] = 0;
-          matrix[1] = [0,0,0,0,0,0,0,0];
-          matrix[2][1] = 0;
-          matrix[3][1] = 0;
-          matrix[4][1] = 0;
-          matrix[5][1] = 0;
-          matrix[6][1] = 0;
-          matrix[7][1] = 0;
-        }
-        if(node === this.defaultNodes[2]) {
-          this.visibleNodes[2] = false;
-          matrix[0][2] = 0;
-          matrix[1][2] = 0;
-          matrix[2] = [0,0,0,0,0,0,0,0];
-          matrix[3][2] = 0;
-          matrix[4][2] = 0;
-          matrix[5][2] = 0;
-          matrix[6][2] = 0;
-          matrix[7][2] = 0;
-        }
-        if(node === this.defaultNodes[3]) {
-          this.visibleNodes[3] = false;
-          matrix[0][3] = 0;
-          matrix[1][3] = 0;
-          matrix[2][3] = 0;
-          matrix[3] = [0,0,0,0,0,0,0,0];
-          matrix[4][3] = 0;
-          matrix[5][3] = 0;
-          matrix[6][3] = 0;
-          matrix[7][3] = 0;
-        }
-        if(node === this.defaultNodes[4]) {
-          this.visibleNodes[4] = false;
-          matrix[0][4] = 0;
-          matrix[1][4] = 0;
-          matrix[2][4] = 0;
-          matrix[3][4] = 0;
-          matrix[4] = [0,0,0,0,0,0,0,0];
-          matrix[5][4] = 0;
-          matrix[6][4] = 0;
-          matrix[7][4] = 0;
-        }
-        if(node === this.defaultNodes[5]) {
-          this.visibleNodes[5] = false;
-          matrix[0][5] = 0;
-          matrix[1][5] = 0;
-          matrix[2][5] = 0;
-          matrix[3][5] = 0;
-          matrix[4][5] = 0;
-          matrix[5] = [0,0,0,0,0,0,0,0];
-          matrix[6][5] = 0;
-          matrix[7][5] = 0;
-        }
-        if(node === this.defaultNodes[6]) {
-          this.visibleNodes[6] = false;
-          matrix[0][6] = 0;
-          matrix[1][6] = 0;
-          matrix[2][6] = 0;
-          matrix[3][6] = 0;
-          matrix[4][6] = 0;
-          matrix[5][6] = 0;
-          matrix[6] = [0,0,0,0,0,0,0,0];
-          matrix[7][6] = 0;
-        }
-        if(node === this.defaultNodes[7]) {
-          this.visibleNodes[7] = false;
-          matrix[0][7] = 0;
-          matrix[1][7] = 0;
-          matrix[2][7] = 0;
-          matrix[3][7] = 0;
-          matrix[4][7] = 0;
-          matrix[5][7] = 0;
-          matrix[6][7] = 0;
-          matrix[7] = [0,0,0,0,0,0,0,0];
-        }
-      }
-      for(let index1=0; index1 < 8; index1++) {
-        for(let index2=0; index2 < 8; index2++) {
-          this.data[index1].splice(index2, 1, newData[index1][index2]*matrix[index1][index2]);
-        }
-      }
-    }
+    // switchNumberOfNodes() {
+    //
+    //   this.resetData();
+    //
+    //   let missingNodes:string[] = cloneDeep(this.defaultNodes);
+    //   for(let node of this.nodes) {
+    //       // Wenn vorhanden, dann aus missingNodes entfernen
+    //       missingNodes = missingNodes.filter(el => el !== node);
+    //   }
+    //   let newData:any[] = cloneDeep(this.data);
+    //   let matrix: number[][] = [[1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1]];
+    //   this.visibleNodes = [true,true,true,true,true,true,true,true];
+    //   for(let node of missingNodes) {
+    //     if(node === this.defaultNodes[0]) {
+    //       this.visibleNodes[0] = false;
+    //       matrix[0] = [0,0,0,0,0,0,0,0];
+    //       matrix[1][0] = 0;
+    //       matrix[2][0] = 0;
+    //       matrix[3][0] = 0;
+    //       matrix[4][0] = 0;
+    //       matrix[5][0] = 0;
+    //       matrix[6][0] = 0;
+    //       matrix[7][0] = 0;
+    //     }
+    //     if(node === this.defaultNodes[1]) {
+    //       this.visibleNodes[1] = false;
+    //       matrix[0][1] = 0;
+    //       matrix[1] = [0,0,0,0,0,0,0,0];
+    //       matrix[2][1] = 0;
+    //       matrix[3][1] = 0;
+    //       matrix[4][1] = 0;
+    //       matrix[5][1] = 0;
+    //       matrix[6][1] = 0;
+    //       matrix[7][1] = 0;
+    //     }
+    //     if(node === this.defaultNodes[2]) {
+    //       this.visibleNodes[2] = false;
+    //       matrix[0][2] = 0;
+    //       matrix[1][2] = 0;
+    //       matrix[2] = [0,0,0,0,0,0,0,0];
+    //       matrix[3][2] = 0;
+    //       matrix[4][2] = 0;
+    //       matrix[5][2] = 0;
+    //       matrix[6][2] = 0;
+    //       matrix[7][2] = 0;
+    //     }
+    //     if(node === this.defaultNodes[3]) {
+    //       this.visibleNodes[3] = false;
+    //       matrix[0][3] = 0;
+    //       matrix[1][3] = 0;
+    //       matrix[2][3] = 0;
+    //       matrix[3] = [0,0,0,0,0,0,0,0];
+    //       matrix[4][3] = 0;
+    //       matrix[5][3] = 0;
+    //       matrix[6][3] = 0;
+    //       matrix[7][3] = 0;
+    //     }
+    //     if(node === this.defaultNodes[4]) {
+    //       this.visibleNodes[4] = false;
+    //       matrix[0][4] = 0;
+    //       matrix[1][4] = 0;
+    //       matrix[2][4] = 0;
+    //       matrix[3][4] = 0;
+    //       matrix[4] = [0,0,0,0,0,0,0,0];
+    //       matrix[5][4] = 0;
+    //       matrix[6][4] = 0;
+    //       matrix[7][4] = 0;
+    //     }
+    //     if(node === this.defaultNodes[5]) {
+    //       this.visibleNodes[5] = false;
+    //       matrix[0][5] = 0;
+    //       matrix[1][5] = 0;
+    //       matrix[2][5] = 0;
+    //       matrix[3][5] = 0;
+    //       matrix[4][5] = 0;
+    //       matrix[5] = [0,0,0,0,0,0,0,0];
+    //       matrix[6][5] = 0;
+    //       matrix[7][5] = 0;
+    //     }
+    //     if(node === this.defaultNodes[6]) {
+    //       this.visibleNodes[6] = false;
+    //       matrix[0][6] = 0;
+    //       matrix[1][6] = 0;
+    //       matrix[2][6] = 0;
+    //       matrix[3][6] = 0;
+    //       matrix[4][6] = 0;
+    //       matrix[5][6] = 0;
+    //       matrix[6] = [0,0,0,0,0,0,0,0];
+    //       matrix[7][6] = 0;
+    //     }
+    //     if(node === this.defaultNodes[7]) {
+    //       this.visibleNodes[7] = false;
+    //       matrix[0][7] = 0;
+    //       matrix[1][7] = 0;
+    //       matrix[2][7] = 0;
+    //       matrix[3][7] = 0;
+    //       matrix[4][7] = 0;
+    //       matrix[5][7] = 0;
+    //       matrix[6][7] = 0;
+    //       matrix[7] = [0,0,0,0,0,0,0,0];
+    //     }
+    //   }
+    //   for(let index1=0; index1 < 8; index1++) {
+    //     for(let index2=0; index2 < 8; index2++) {
+    //       this.data[index1].splice(index2, 1, newData[index1][index2]*matrix[index1][index2]);
+    //     }
+    //   }
+    // }
 
     switchFahrzeugklasse() {
       // HACK !!!
@@ -245,7 +245,7 @@
         this.data = cloneDeep(this.dataGueterverkehr);
       }
 
-      this.switchNumberOfNodes();
+      // this.switchNumberOfNodes();
     }
 
     resetData() {
@@ -290,6 +290,10 @@
         [4500, 1660, 4370],
         [1680, 4350, 1310],
         [3870, 1790, 4170],
+        [1800, 4160, 2010],
+        [4500, 1660, 4370],
+        [1680, 4350, 1310],
+        [3870, 1790, 4170],
       ];
     }
 
@@ -299,11 +303,19 @@
         [170, 130, 120],
         [80, 170, 60],
         [70, 150, 90],
+        [150, 90, 170],
+        [170, 130, 120],
+        [80, 170, 60],
+        [70, 150, 90],
       ];
     }
 
     get dataGueterverkehr() {
       return [
+        [75, 45, 85],
+        [85, 65, 60],
+        [40, 85, 30],
+        [35, 75, 45],
         [75, 45, 85],
         [85, 65, 60],
         [40, 85, 30],

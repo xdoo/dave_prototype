@@ -38,8 +38,7 @@
     @Prop()
     private readonly name!: string;
 
-    private readonly curveness01: number = 0.1;
-    private readonly curveness04: number = 0.4;
+    private readonly curveness02: number = 0.2;
 
     @Ref('chart') readonly chart!: any
     @Ref('container') readonly container!: HTMLDivElement
@@ -78,149 +77,289 @@
             width: 400,
             height: 400,
             symbol: 'none',
-            edgeSymbolSize: 10,
+            edgeSymbolSize: 15,
             data: [
               {
                 name: '1s',
                 x: -25,
-                y: -200
+                y: -440
               },
               {
                 name: '1t',
                 x: 25,
-                y: -200
+                y: -440
               },
               {
                 name: '2s',
-                x: 200,
+                x: 440,
                 y: -25
               },
               {
                 name: '2t',
-                x: 200,
+                x: 440,
                 y: 25
               },
               {
                 name: '3s',
                 x: 25,
-                y: 200
+                y: 440
               },
               {
                 name: '3t',
                 x: -25,
-                y: 200
+                y: 440
               },
               {
                 name: '4s',
-                x: -200,
+                x: -440,
                 y: 25
               },
               {
                 name: '4t',
-                x: -200,
+                x: -440,
                 y: -25
+              },
+              {
+                name: '5s',
+                x: 270,
+                y: -300
+              },
+              {
+                name: '5t',
+                x: 300,
+                y: -270
+              },
+              {
+                name: '6s',
+                x: 300,
+                y: 270
+              },
+              {
+                name: '6t',
+                x: 270,
+                y: 300
+              },
+              {
+                name: '7s',
+                x: -270,
+                y: 300
+              },
+              {
+                name: '7t',
+                x: -300,
+                y: 270
+              },
+              {
+                name: '8s',
+                x: -300,
+                y: -270
+              },
+              {
+                name: '8t',
+                x: -270,
+                y: -300
               },
               // Kreis um center
               {
                 name: 'K1',
-                x: 50,
-                y: -50
+                x: 90,
+                y: -210
               },
               {
                 name: 'K1t',
-                x: 53,
-                y: -53
+                x: 93,
+                y: -213
               },
               {
                 name: 'K1s',
-                x: 56,
-                y: -56
+                x: 96,
+                y: -216
+              },
+              {
+                name: 'K5',
+                x: 210,
+                y: -90
+              },
+              {
+                name: 'K5t',
+                x: 213,
+                y: -93
+              },
+              {
+                name: 'K5s',
+                x: 216,
+                y: -96
               },
               {
                 name: 'K2',
-                x: 50,
-                y: 50
+                x: 210,
+                y: 90
               },
               {
                 name: 'K2t',
-                x: 53,
-                y: 53
+                x: 213,
+                y: 93
               },
               {
                 name: 'K2s',
-                x: 56,
-                y: 56
+                x: 216,
+                y: 96
+              },
+              {
+                name: 'K6',
+                x: 90,
+                y: 210
+              },
+              {
+                name: 'K6t',
+                x: 93,
+                y: 213
+              },
+              {
+                name: 'K6s',
+                x: 96,
+                y: 216
               },
               {
                 name: 'K3',
-                x: -50,
-                y: 50
+                x: -110,
+                y: 210
               },
               {
                 name: 'K3t',
-                x: -53,
-                y: 53
+                x: -113,
+                y: 213
               },
               {
                 name: 'K3s',
-                x: -56,
-                y: 56
+                x: -116,
+                y: 216
+              },
+              {
+                name: 'K7',
+                x: -210,
+                y: 90
+              },
+              {
+                name: 'K7t',
+                x: -213,
+                y: 93
+              },
+              {
+                name: 'K7s',
+                x: -216,
+                y: 96
               },
               {
                 name: 'K4',
-                x: -50,
-                y: -50
+                x: -210,
+                y: -90
               },
               {
                 name: 'K4t',
-                x: -53,
-                y: -53
+                x: -213,
+                y: -93
               },
               {
                 name: 'K4s',
-                x: -56,
-                y: -56
+                x: -216,
+                y: -96
               },
-
+              {
+                name: 'K8',
+                x: -90,
+                y: -210
+              },
+              {
+                name: 'K8t',
+                x: -93,
+                y: -213
+              },
+              {
+                name: 'K8s',
+                x: -96,
+                y: -216
+              },
             ],
             // links: [],
             edges: [
               // Einfahrt
               {
                 source: '1s',
-                target: 'K4t',
+                target: 'K8t',
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[0][0]),
-                  curveness: this.curveness01,
+                  curveness: this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
               },
+
               {
                 source: '2s',
-                target: 'K1t',
+                target: 'K5t',
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[1][0]),
-                  curveness: this.curveness01,
+                  curveness: this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
               },
               {
                 source: '3s',
-                target: 'K2t',
+                target: 'K6t',
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[2][0]),
-                  curveness: this.curveness01,
+                  curveness: this.curveness02,
                   color: 'black',
                 }
               },
               {
                 source: '4s',
-                target: 'K3t',
+                target: 'K7t',
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[3][0]),
-                  curveness: this.curveness01,
+                  curveness: this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: '5s',
+                target: 'K1t',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[4][0]),
+                  curveness: this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: '6s',
+                target: 'K2t',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[5][0]),
+                  curveness: this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: '7s',
+                target: 'K3t',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[6][0]),
+                  curveness: this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: '8s',
+                target: 'K4t',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[7][0]),
+                  curveness: this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
@@ -231,7 +370,7 @@
                 target: '1t',
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[0][2]),
-                  curveness: this.curveness01,
+                  curveness: this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
@@ -241,7 +380,7 @@
                 target: '2t',
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[1][2]),
-                  curveness: this.curveness01,
+                  curveness: this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
@@ -251,7 +390,7 @@
                 target: '3t',
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[2][2]),
-                  curveness: this.curveness01,
+                  curveness: this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
@@ -261,7 +400,47 @@
                 target: '4t',
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[3][2]),
-                  curveness: this.curveness01,
+                  curveness: this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: 'K5s',
+                target: '5t',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[4][2]),
+                  curveness: this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: 'K6s',
+                target: '6t',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[5][2]),
+                  curveness: this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: 'K7s',
+                target: '7t',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[6][2]),
+                  curveness: this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: 'K8s',
+                target: '8t',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[7][2]),
+                  curveness: this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
@@ -269,40 +448,80 @@
               // Kreis
               {
                 source: 'K1',
-                target: 'K4',
+                target: 'K8',
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[0][1]),
-                  curveness: -this.curveness04,
+                  curveness: -this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: 'K8',
+                target: 'K4',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[7][1]),
+                  curveness: -this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
               },
               {
                 source: 'K4',
+                target: 'K7',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[3][1]),
+                  curveness: -this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: 'K7',
                 target: 'K3',
                 lineStyle: {
-                  width: this.calculateLineWidth(this.data[1][1]),
-                  curveness: -this.curveness04,
+                  width: this.calculateLineWidth(this.data[6][1]),
+                  curveness: -this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
               },
               {
                 source: 'K3',
-                target: 'K2',
+                target: 'K6',
                 lineStyle: {
                   width: this.calculateLineWidth(this.data[2][1]),
-                  curveness: -this.curveness04,
+                  curveness: -this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: 'K6',
+                target: 'K2',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[5][1]),
+                  curveness: -this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
               },
               {
                 source: 'K2',
+                target: 'K5',
+                lineStyle: {
+                  width: this.calculateLineWidth(this.data[1][1]),
+                  curveness: -this.curveness02,
+                  color: 'black',
+                },
+                symbol: ['none','arrow'],
+              },
+              {
+                source: 'K5',
                 target: 'K1',
                 lineStyle: {
-                  width: this.calculateLineWidth(this.data[3][1]),
-                  curveness: -this.curveness04,
+                  width: this.calculateLineWidth(this.data[4][1]),
+                  curveness: -this.curveness02,
                   color: 'black',
                 },
                 symbol: ['none','arrow'],
@@ -344,46 +563,28 @@
                   align: 'center',
                   color: 'black'
                 },
-                valueRight: {
-                  color: '#999',
-                  lineHeight: 13,
-                  align: 'right'
-                },
-                dividerRight: {
-                  color: '#999',
-                  lineHeight: 5,
-                  align: 'right'
-                },
-                nameRight: {
-                  fontSize: 16,
-                  lineHeight: 22,
-                  align: 'center',
-                  color: 'black'
-                },
               }
             },
             data: [
               {
                 name: '1',
                 x: 0,
-                y: -200,
+                y: -530,
                 symbol: 'circle',
                 label: {
-                  // formatter: this.formatLabel(0, true, false),
-                  formatter: this.formatLabel2(0, true),
+                  formatter: this.formatLabel2(0),
                   show: true,
                   rotate: 0,
-                  position: [-50, -100]
+                  position: [-40, -100]
                 },
               },
               {
                 name: '2',
-                x: 200,
+                x: 530,
                 y: 0,
                 symbol: 'circle',
                 label: {
-                  // formatter: this.formatLabel(1, true, false),
-                  formatter: this.formatLabel2(1, true),
+                  formatter: this.formatLabel2(1),
                   show: true,
                   position: [40, -30]
                 }
@@ -391,78 +592,76 @@
               {
                 name: '3',
                 x: 0,
-                y: 200,
+                y: 530,
                 symbol: 'circle',
                 label: {
-                  // formatter: this.formatLabel(2, false, false),
-                  formatter: this.formatLabel2(2, false),
+                  formatter: this.formatLabel2(2),
                   show: true,
                   rotate: 0,
                   // position: [-30, 100]
-                  position: [-50, 50]
+                  position: [-40, 50]
                 }
               },
               {
                 name: '4',
-                x: -200,
+                x: -530,
                 y: 0,
                 symbol: 'circle',
                 label: {
-                  // formatter: this.formatLabel(3, false, false),
-                  formatter: this.formatLabel2(3, false),
+                  formatter: this.formatLabel2(3),
                   show: true,
                   // position: [-80, -30]
                   position: [-130, -30]
                 }
               },
-              // {
-              //   name: 'Stay1',
-              //   x: 0,
-              //   y: -200,
-              //   symbol: 'circle',
-              //   label: {
-              //     formatter: this.formatLabel(0, true, true),
-              //     show: true,
-              //     rotate: 45,
-              //     position: [120, 60]
-              //   }
-              // },
-              // {
-              //   name: 'Stay2',
-              //   x: 200,
-              //   y: 0,
-              //   symbol: 'circle',
-              //   label: {
-              //     formatter: this.formatLabel(1, true, true),
-              //     show: true,
-              //     rotate: -45,
-              //     position: [-40, 120]
-              //   }
-              // },
-              // {
-              //   name: 'Stay3',
-              //   x: 0,
-              //   y: 200,
-              //   symbol: 'circle',
-              //   label: {
-              //     formatter: this.formatLabel(2, false, true),
-              //     show: true,
-              //     rotate: 45,
-              //     position: [-180, -60]
-              //   }
-              // },
-              // {
-              //   name: 'Stay4',
-              //   x: -200,
-              //   y: 0,
-              //   symbol: 'circle',
-              //   label: {
-              //     formatter: this.formatLabel(3, false, true),
-              //     show: true,
-              //     rotate: -45,
-              //     position: [80, -180]
-              //   }
-              // },
+              {
+                name: '5',
+                x: 350,
+                y: -350,
+                symbol: 'circle',
+                label: {
+                  formatter: this.formatLabel2(4),
+                  show: true,
+                  rotate: 0,
+                  position: [40, -100]
+                },
+              },
+              {
+                name: '6',
+                x: 350,
+                y: 350,
+                symbol: 'circle',
+                label: {
+                  formatter: this.formatLabel2(5),
+                  show: true,
+                  position: [40, 30]
+                }
+              },
+              {
+                name: '7',
+                x: -350,
+                y: 350,
+                symbol: 'circle',
+                label: {
+                  formatter: this.formatLabel2(6),
+                  show: true,
+                  rotate: 0,
+                  // position: [-30, 100]
+                  position: [-130, 30]
+                }
+              },
+              {
+                name: '8',
+                x: -350,
+                y: -350,
+                symbol: 'circle',
+                label: {
+                  formatter: this.formatLabel2(7),
+                  show: true,
+                  // position: [-80, -30]
+                  position: [-130, -100]
+                }
+              },
             ],
           },
           // Node-Label Series
@@ -479,7 +678,7 @@
               {
                 name: '1',
                 x: 0,
-                y: -200,
+                y: -530,
                 symbol: 'circle',
                 label: {
                   show: true
@@ -487,7 +686,7 @@
               },
               {
                 name: '2',
-                x: 200,
+                x: 530,
                 y: 0,
                 symbol: 'circle',
                 label: {
@@ -497,7 +696,7 @@
               {
                 name: '3',
                 x: 0,
-                y: 200,
+                y: 530,
                 symbol: 'circle',
                 label: {
                   show: true
@@ -505,8 +704,44 @@
               },
               {
                 name: '4',
-                x: -200,
+                x: -530,
                 y: 0,
+                symbol: 'circle',
+                label: {
+                  show: true
+                },
+              },
+              {
+                name: '5',
+                x: 350,
+                y: -350,
+                symbol: 'circle',
+                label: {
+                  show: true
+                },
+              },
+              {
+                name: '6',
+                x: 350,
+                y: 350,
+                symbol: 'circle',
+                label: {
+                  show: true
+                },
+              },
+              {
+                name: '7',
+                x: -350,
+                y: 350,
+                symbol: 'circle',
+                label: {
+                  show: true
+                },
+              },
+              {
+                name: '8',
+                x: -350,
+                y: -350,
                 symbol: 'circle',
                 label: {
                   show: true
@@ -519,6 +754,7 @@
     }
 
     private calculateLineWidth(cars: number): number {
+      console.log(this.data);
       let maxWidth = 10;
       if (cars === 0) {
         return 0;
@@ -550,51 +786,12 @@
       return maxWidth;
     }
 
-    // private formatLabel (node:number, directionLeft:boolean, stay:boolean) {
-    //   if(stay) {
-    //     if(directionLeft) {
-    //       return `{valueLeft| ${this.data[node][2]}}\n\n`
-    //           + `{valueLeft| ${this.data[node][1]} }\n\n`
-    //           + `{dividerLeft|--------}\n {valueLeft| ${this.data[node][1] + this.data[node][2]} }`
-    //           ;
-    //     } else {
-    //       return `{valueRight|${this.data[node][1]} }\n\n`
-    //           + `{valueRight|${this.data[node][2]} }\n\n`
-    //           + `{dividerRight|--------}\n {valueRight|${this.data[node][1] + this.data[node][2]} }`
-    //           ;
-    //     }
-    //   }
-    //   else {
-    //     if(directionLeft) {
-    //       return `{valueLeft| ${this.data[node][0]}}\n\n`
-    //           + `{nameLeft| ${this.streets[node]}} \n`
-    //           + `{valueLeft| ${this.data[node][0] + this.data[node][2]} }\n\n`
-    //           + `{valueLeft| ${this.data[node][2]} }`
-    //           ;
-    //     } else {
-    //       return `{valueRight|${this.data[node][2]} }\n\n`
-    //           + `{nameRight| ${this.streets[node]}} \n`
-    //           + `{valueRight|${this.data[node][0] + this.data[node][2]} }\n\n`
-    //           + `{valueRight|${this.data[node][0]} }`
-    //           ;
-    //     }
-    //   }
-    // }
-
-    private formatLabel2 (node:number, directionLeft:boolean) {
-        if(directionLeft) {
+    private formatLabel2 (node:number) {
           return `{nameLeft| ${this.streets[node]}} \n\n`
               + `{valueLeft| Einfahrend: ${this.data[node][0]} }\n`
               + `{valueLeft| Verbleibend: ${this.data[node][1]} }\n`
               + `{valueLeft| Ausfahrend: ${this.data[node][2]} }\n`
               ;
-        } else {
-          return `{nameRight| ${this.streets[node]}} \n\n`
-              + `{valueLeft| Einfahrend: ${this.data[node][0]} }\n`
-              + `{valueLeft| Verbleibend: ${this.data[node][1]} }\n`
-              + `{valueLeft| Ausfahrend: ${this.data[node][2]} }\n`
-              ;
-        }
     }
   }
 </script>
