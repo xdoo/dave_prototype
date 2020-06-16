@@ -13,7 +13,7 @@ export default new Vuex.Store({
     user,
     snackbar,
     security,
-    search
+    search,
   },
   strict: debug
 })

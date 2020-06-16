@@ -51,7 +51,9 @@
       <v-col cols="10">
         <v-container class="pa-0">
           <v-row>
-            <zaehlstelle-header></zaehlstelle-header>
+            <zaehlstelle-header
+              :counter-id="markerId"
+            ></zaehlstelle-header>
           </v-row>
           <v-row>
             <v-container>
