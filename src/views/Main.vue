@@ -3,7 +3,6 @@
       height="100%"
       width="100%"
       show-marker=true
-      zoom="11"
       :center="center"
   />
 <!--  <v-container>-->
