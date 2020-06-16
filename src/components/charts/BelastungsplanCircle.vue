@@ -74,8 +74,8 @@
             type: 'graph',
             layout: 'none',
             center: [0, 0],
-            width: 400,
-            height: 400,
+            width: 249,
+            height: 249,
             symbol: 'none',
             edgeSymbolSize: 15,
             data: [
@@ -537,8 +537,8 @@
             type: 'graph',
             layout: 'none',
             center: [0, 0],
-            width: 400,
-            height: 400,
+            width: 249,
+            height: 249,
             symbol: 'none',
             symbolSize: 20,
             label: {
@@ -670,8 +670,8 @@
             type: 'graph',
             layout: 'none',
             center: [0, 0],
-            width: 400,
-            height: 400,
+            width: 249,
+            height: 249,
             symbol: 'none',
             symbolSize: 20,
             data: [

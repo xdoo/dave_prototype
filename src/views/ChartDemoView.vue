@@ -69,7 +69,7 @@
               <v-row>
                 <v-col cols="12" md="12">
                   <belastungsplan-circle-card
-                      height="920"
+                      height="700"
                   ></belastungsplan-circle-card>
                 </v-col>
               </v-row>
