@@ -1,7 +1,10 @@
 <template>
   <v-container fluid class="pa-0">
     <v-row no-gutters>
-      <dummy-map></dummy-map>
+      <dummy-map
+        :zoom="14"
+        selected-marker-id="6"
+      ></dummy-map>
     </v-row>
     <v-row>
       <v-col cols="2">

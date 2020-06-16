@@ -12,6 +12,7 @@
         v-for="marker in markers"
         :key="marker.id"
         :lat-lng="createLatLng(marker.lat, marker.lng)"
+        :options="options(marker.id)"
         @click="showMe"
       >
         <l-tooltip :options="{
@@ -54,6 +55,7 @@
     @Prop({default: 12}) zoom!: number;
     @Prop({default: latLng(48.142537,11.534742)}) center!: LatLng;
 
+    @Prop() selectedMarkerId!: string
 
     @Prop({default: false}) readonly showMarker!: boolean;
 
@@ -72,10 +74,20 @@
       return latLng(parseFloat(lat), parseFloat(lng))
     }
 
+    options(id: string) {
+      if(this.selectedMarkerId) {
+        if(this.selectedMarkerId === id) {
+          return {opacity: 1.0}
+        } else {
+          return {opacity: 0.5}
+        }
+      }
+    }
+
     get markers () {
       const dummyresult = this.$store.getters["search/dummyresult"]
       if(Array.isArray(dummyresult)) {
-        if (dummyresult.length > 0) {
+        if (dummyresult.length > 0 && !this.selectedMarkerId) {
           return this.counters.filter(counter => dummyresult.includes(parseInt(counter.id)))
         } else {
           return this.counters
@@ -93,7 +105,7 @@
         {id: '3', districtNumber: '13', district: 'Bogenhausen', counter: 'Max-Joseph-Brücke', streets: 'Max-Joseph-Brücke', lng: '11.5979578', lat: '48.149204', countsNum: '3', lastCount: '20.03.2020', keywords: 'Isar', reason: 'Umbau Straße'},
         {id: '4', districtNumber: '13', district: 'Bogenhausen', counter: 'Truderinger Str.', streets: 'Truderinger Str.', lng: '11.6326668', lat: '48.135299', countsNum: '6', lastCount: '15.12.2019', keywords: 'Bahn', reason: 'Umbau Straße'},
         {id: '5', districtNumber: '13', district: 'Bogenhausen', counter: 'Effnerplatz', streets: 'Effnerplatz, Effnerstr., Bülowstr., Richard-Strauss-Str.', lng: '11.6135198', lat: '48.152782', countsNum: '8', lastCount: '12.01.2020', keywords: '', reason: 'Ampelschaltung'},
-        {id: '6', districtNumber: '8', district: 'Schwanthalerhöhe', counter: 'Donnersberger Brücke', streets: 'Donnersberger Brücke', lng: '11.5323823', lat: '48.141895', countsNum: '4', lastCount: '15.06.2019', keywords: 'Bahn', reason: 'Umbau S-Bahn'},
+        {id: '6', districtNumber: '8', district: 'Schwanthalerhöhe', counter: 'Donnersberger Brücke', streets: 'Donnersberger Brücke', lng: '11.53468', lat: '48.14238', countsNum: '4', lastCount: '15.06.2019', keywords: 'Bahn', reason: 'Umbau S-Bahn'},
         {id: '7', districtNumber: '8', district: 'Schwanthalerhöhe', counter: 'Kreuzung Trappentreustr. / Donnersbergerbrücke', streets: 'Trappentreustr., Donnersbergerbrücke', lng: '11.5324463', lat: '48.13994', countsNum: '5', lastCount: '11.02.2018', keywords: '', reason: 'Umbau Kreuzung'},
         {id: '8', districtNumber: '8', district: 'Schwanthalerhöhe', counter: 'Kreuzung Westend- / Bergmannstr.', streets: 'Westendstr., Bergmannstr.', lng: '11.5371788', lat: '48.138163', countsNum: '7', lastCount: '11.02.2018', keywords: '', reason: 'Ampelschaltung'},
         {id: '9', districtNumber: '8', district: 'Schwanthalerhöhe', counter: 'Kreuzung Guldein- / Astallerstr.', streets: 'Guldeinstr., Astallerstr.', lng: '11.5306388', lat: '48.138784', countsNum: '3', lastCount: '11.02.2018', keywords: '', reason: 'Umbau Kreuzung'},
