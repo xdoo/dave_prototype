@@ -68,6 +68,13 @@
               </v-row>
               <v-row>
                 <v-col cols="12" md="12">
+                  <belastungsplan-circle-card
+                      height="700"
+                  ></belastungsplan-circle-card>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" md="12">
                   <stepline-card
                     height="820"
                   ></stepline-card>
@@ -107,6 +114,7 @@
   import LineBarCard from "@/components/charts/LineBarCard.vue";
   import ZaehlstelleHeader from "@/components/zaehlstelle/ZaehlstelleHeader.vue"
   import ListCard from "@/components/charts/ListCard.vue";
+  import BelastungsplanCircleCard from "@/components/charts/BelastungsplanCircleCard.vue";
 
   @Component({
   components: {
@@ -116,7 +124,8 @@
     BelastungsplanCard,
     LineBarCard,
     DummyMap,
-    ListCard
+    ListCard,
+    BelastungsplanCircleCard
   }
 })
 export default class ChartDemoView extends Vue {
