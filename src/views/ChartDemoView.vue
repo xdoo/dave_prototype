@@ -1,7 +1,10 @@
 <template>
   <v-container fluid class="pa-0">
     <v-row no-gutters>
-      <dummy-map></dummy-map>
+      <dummy-map
+        :zoom="14"
+        :selected-marker-id="markerId"
+      ></dummy-map>
     </v-row>
     <v-row>
       <v-col cols="2">
@@ -48,7 +51,9 @@
       <v-col cols="10">
         <v-container class="pa-0">
           <v-row>
-            <zaehlstelle-header></zaehlstelle-header>
+            <zaehlstelle-header
+              :counter-id="markerId"
+            ></zaehlstelle-header>
           </v-row>
           <v-row>
             <v-container>
@@ -132,6 +137,10 @@ export default class ChartDemoView extends Vue {
 
   dummyClick() {
     console.log("happy click :)")
+  }
+
+  get markerId() {
+    return this.$route.params.id
   }
 
 }

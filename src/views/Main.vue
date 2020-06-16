@@ -3,7 +3,7 @@
       height="100%"
       width="100%"
       show-marker=true
-      :center="center"
+      :zoom="12"
   />
 <!--  <v-container>-->
 <!--    <v-layout-->

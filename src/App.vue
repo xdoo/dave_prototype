@@ -179,13 +179,13 @@
         if(this.searchQuery.type === "search") {
           this.$store.dispatch('search/dummyresult', this.searchQuery.ids)
         } else {
-          this.showMe()
+          this.showMe(this.searchQuery.counterId)
         }
       }
     }
 
-    private showMe() {
-      this.$router.push(`/chartdemo`);
+    private showMe(id: string) {
+      this.$router.push("/chartdemo/" + id);
     }
 
     get suggests() {
@@ -206,11 +206,11 @@
         {text: 'Schwanthalerhöhe', type: 'search', counterId: '', ids: [6, 7, 8, 9]},
         {text: 'Schwanthalerhöhe Donnersberger Brücke', type: 'counter', counterId: '6', ids: []},
         {text: 'Donnersberger Brücke', type: 'counter', counterId: '6', ids: []},
-        {text: '24.12.2019 Donnersberger Brücke', type: 'count', counterId: '', ids: []},
-        {text: '16.04.2018 Donnerberger Brücke', type: 'count', counterId: '', ids: []},
-        {text: '12.08.2015 Donnersberger Brücke', type: 'count', counterId: '', ids: []},
-        {text: '16.04.2018 Denninger Str.', type: 'count', counterId: '', ids: []},
-        {text: 'AZ4711 16.04.2018 Donnersbergerbrücke ', type: 'count', counterId: '', ids: []},
+        {text: '24.12.2019 Donnersberger Brücke', type: 'count', counterId: '6', ids: []},
+        {text: '16.04.2018 Donnerberger Brücke', type: 'count', counterId: '6', ids: []},
+        {text: '12.08.2015 Donnersberger Brücke', type: 'count', counterId: '6', ids: []},
+        {text: '16.04.2018 Denninger Str.', type: 'count', counterId: '6', ids: []},
+        {text: 'AZ4711 16.04.2018 Donnersbergerbrücke ', type: 'count', counterId: '6', ids: []},
         {text: 'Dachauerstraße', type: 'search', counterId: '', ids: [10, 11, 12, 13, 14, 15, 16, 17, 18]},
         {text: 'Bahn', type: 'search', counterId: '', ids: [4, 6, 10, 19]},
         {text: 'Isar', type: 'search', counterId: '', ids: [2, 3]},
