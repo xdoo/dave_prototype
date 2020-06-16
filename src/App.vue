@@ -176,9 +176,11 @@
     //Navigiert zur Seite mit den Suchergebnissen und sendet ein Event zum Auslösen weiterer Suchen.
     private quickSearch() {
       if (this.searchQuery !== '' && this.searchQuery != null) {
-        // this.$router.push(`/zaehlstelleoverview/${this.searchQuery}`);
-        console.log("query - " + this.searchQuery.ids)
-        this.$store.dispatch('search/dummyresult', this.searchQuery.ids)
+        if(this.searchQuery.type === "search") {
+          this.$store.dispatch('search/dummyresult', this.searchQuery.ids)
+        } else {
+          this.showMe()
+        }
       }
     }
 
@@ -190,6 +192,8 @@
       return [
         {text: '1 Altstadt - Lehel', type: 'search', counterId: '', ids: []},
         {text: '10 Moosach', type: 'search', counterId: '', ids: [10, 11, 12, 15, 16, 17, 18]},
+        {text: 'Moosach', type: 'search', counterId: '', ids: [10, 11, 12, 15, 16, 17, 18]},
+        {text: 'Moosach Bahn', type: 'search', counterId: '', ids: [10, 19]},
         {text: '11 Milbertshofen - Am Hart', type: 'search', counterId: '', ids: []},
         {text: '12 Schwabing - Freimann', type: 'search', counterId: '', ids: []},
         {text: '13 Bogenhausen', type: 'search', counterId: '', ids: []},
@@ -208,7 +212,7 @@
         {text: '16.04.2018 Denninger Str.', type: 'count', counterId: '', ids: []},
         {text: 'AZ4711 16.04.2018 Donnersbergerbrücke ', type: 'count', counterId: '', ids: []},
         {text: 'Dachauerstraße', type: 'search', counterId: '', ids: [10, 11, 12, 13, 14, 15, 16, 17, 18]},
-        {text: 'Bahn', type: 'search', counterId: '', ids: [4, 6, 10]},
+        {text: 'Bahn', type: 'search', counterId: '', ids: [4, 6, 10, 19]},
         {text: 'Isar', type: 'search', counterId: '', ids: [2, 3]},
         {text: 'Dachauerstraße Ampelschaltung', type: 'search', counterId: '', ids: [11, 12, 15]},
         {text: 'Dachauerstraße Umbau Trambahn', type: 'search', counterId: '', ids: [13, 14, 17, 18]}

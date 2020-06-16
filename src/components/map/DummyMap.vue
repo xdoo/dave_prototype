@@ -105,7 +105,8 @@
         {id: '15', districtNumber: '10', district: 'Moosach', counter: 'Kreuzung Dachauerstr. / Donauwörther Str.', streets: 'Dachauerstr., Donauwörther Str.', lng: '11.50531', lat: '48.18466', countsNum: '3', lastCount: '20.03.2020', keywords: '', reason: 'Ampelschaltung'},
         {id: '16', districtNumber: '10', district: 'Moosach', counter: 'Kreuzung Dachauerstr. / Hanauer Str.', streets: 'Dachauerstr., Hanauer Str., Orpheusstr.', lng: '11.52828', lat: '48.17268', countsNum: '4', lastCount: '11.11.2018', keywords: '', reason: 'Umbau Kreuzung'},
         {id: '17', districtNumber: '10', district: 'Moosach', counter: 'Kreuzung Dachauerstr. / Emmy-Noether-Str.', streets: 'Dachauerstr., emmy-Noether-Str.', lng: '11.53046', lat: '48.17147', countsNum: '1', lastCount: '14.03.2018', keywords: '', reason: 'Umbau Trambahn'},
-        {id: '18', districtNumber: '10', district: 'Moosach', counter: 'Kreuzung Dachauer- / Lothstr.', streets: 'Dachauerstr., Lothstr.', lng: '11.55367', lat: '48.15424', countsNum: '4', lastCount: '11.04.2017', keywords: '', reason: 'Umbau Trambahn'}
+        {id: '18', districtNumber: '10', district: 'Moosach', counter: 'Kreuzung Dachauer- / Lothstr.', streets: 'Dachauerstr., Lothstr.', lng: '11.55367', lat: '48.15424', countsNum: '4', lastCount: '11.04.2017', keywords: '', reason: 'Umbau Trambahn'},
+        {id: '19', districtNumber: '10', district: 'Moosach', counter: 'Bahnbrücke Allacher Str.', streets: 'Allacher Str.', lng: '11.5007', lat: '48.17516', countsNum: '3', lastCount: '17.10.2018', keywords: '', reason: 'Renovierung Brücke'}
       ]
     }
   }
