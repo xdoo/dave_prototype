@@ -42,7 +42,7 @@ export default class StepLine extends Vue{
     return {
     toolbox: {
         showTitle: false,
-        right: '4%',
+        orient: 'vertical',
         feature: {
             saveAsImage: {show: true, title: 'Download', name: 'Gangliniendiagramm'},
             // dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},
@@ -61,7 +61,7 @@ export default class StepLine extends Vue{
     grid: {
         left: '7%',
         right: '5%',
-        bottom: '300',
+        bottom: '5%',
         containLabel: false
     },
     xAxis: {

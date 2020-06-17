@@ -55,7 +55,7 @@ export default class Heatmap extends Vue {
     return {
       toolbox: {
         showTitle: false,
-        right: '2%',
+          orient: 'vertical',
         feature: {
           saveAsImage: {show: true, title: 'Download', name: 'Heatmap'},
           // dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},
@@ -71,7 +71,8 @@ export default class Heatmap extends Vue {
         animation: false,
         grid: {
             height: '25%',
-            top: '5%'
+            top: '5%',
+            left: '100'
         },
         xAxis: {
             type: 'category',
@@ -93,7 +94,7 @@ export default class Heatmap extends Vue {
             calculable: true,
             orient: 'horizontal',
             left: 'center',
-            bottom: '50%',
+            bottom: '30%',
             inRange: {
               color: this.color
             }

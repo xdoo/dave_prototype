@@ -57,7 +57,7 @@
         },
         toolbox: {
           showTitle: false,
-          right: '2%',
+          orient: 'vertical',
           feature: {
             saveAsImage: {show: true, title: 'Download', name: 'BelastungsplanKreisverkehr'},
             // dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},

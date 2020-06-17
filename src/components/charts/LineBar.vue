@@ -86,7 +86,7 @@
         },
         toolbox: {
           showTitle: false,
-          right: '2%',
+          orient: 'vertical',
           feature: {
             myToolExportData: {
               show: true,
