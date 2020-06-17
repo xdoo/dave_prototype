@@ -56,7 +56,14 @@
           </div>
         </l-tooltip>
       </l-marker>
-      <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+      <l-wms-tile-layer
+          base-url='https://geoportal.muenchen.de/geoserver/gsm/wms?'
+          layers='g_stadtkarte_gesamt'
+          :visible=true
+          name="Stadtplan"
+          attribution='&copy; <a href="https://www.muenchen.de/rathaus/Stadtverwaltung/Kommunalreferat/geodatenservice/geobasisdaten.html">GeodatenService München</a>'
+          layer-type="base"
+      />
     </l-map>
   </div>
 </template>
@@ -65,7 +72,7 @@
   import {Component, Prop} from "vue-property-decorator"
 
   // imports for leaflet
-  import {LMap, LTileLayer, LMarker, LTooltip} from "vue2-leaflet"
+  import {LMap, LTileLayer, LWMSTileLayer, LMarker, LTooltip} from "vue2-leaflet"
   // eslint-disable-next-line no-unused-vars
   import {latLng, LatLng} from "leaflet"
 
@@ -75,6 +82,7 @@
       LTileLayer,
       LMarker,
       LTooltip,
+      'l-wms-tile-layer': LWMSTileLayer,
     }
   })
   export default class DummyMap extends Vue {
