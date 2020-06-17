@@ -1,50 +1,100 @@
 <template>
-  <v-card
-    :height="height"
-    :width="width"
-    outlined
-  > 
-    <v-card-title>Belastung nach Zeit und Fahrzeugen</v-card-title>
-    <v-card-text>
-      Die Grafik zeigt, wieviele Fahrzeuge, wecher Art, zu welcher Zeit, die Zählstelle passiert haben. Wenn Sie mit der Maus über die Abschnitte fahren, werden Ihnen die genauen Zahlen angezeigt. Fahren Sie mit der Maus unten über die Legende, so werden die Abschnitte hervorgehoben, die zur Farbe passen.
-    </v-card-text>
-    <v-card-actions>
-        <v-select
-          class="px-2"
-          v-model="node"
-          :items="nodes"
-          v-on:change="switchData()"
-          label="Knotenpunkte"
-        ></v-select>
-<!--        <v-btn-->
-<!--          @click="takePicture()"-->
-<!--          title="Chart als Bild herunterladen." -->
-<!--          icon>-->
-<!--          <v-icon>mdi-image</v-icon>-->
-<!--        </v-btn>-->
-<!--        <v-btn -->
-<!--          title="Daten als Tabelle herunter laden."-->
-<!--          icon>-->
-<!--          <v-icon>mdi-table-large</v-icon>-->
-<!--        </v-btn>-->
-    </v-card-actions>
-      <heatmap
-        ref="heatmap"
-        :data="data"
-        name="Zählung 08.2019"
-        :categories="categories"
-        :hours="hours"
-        rangeMax="250"
-      ></heatmap>
-  </v-card>
+  <div>
+    <v-overlay :value="overlay" light :dark="false">
+      <v-card
+          :height="$vuetify.breakpoint.height * 0.98"
+          :width="$vuetify.breakpoint.width * 0.98"
+          outlined
+      >
+        <v-system-bar window>
+          Belastung nach Zeit und Fahrzeugen
+          <v-spacer/>
+          <v-btn icon @click="overlay = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-system-bar>
+        <v-card-text>
+          Die Grafik zeigt, wieviele Fahrzeuge, wecher Art, zu welcher Zeit, die Zählstelle passiert haben.
+          Wenn Sie mit der Maus über die Abschnitte fahren, werden Ihnen die genauen Zahlen angezeigt. Fahren Sie mit der Maus unten über die Legende,
+          so werden die Abschnitte hervorgehoben, die zur Farbe passen.
+        </v-card-text>
+        <v-row>
+          <v-col cols="12" md="9">
+            <v-sheet :height="$vuetify.breakpoint.height * 0.8" max-height="400">
+              <heatmap
+                  ref="heatmap"
+                  :data="data"
+                  name="Zählung 08.2019"
+                  :categories="categories"
+                  :hours="hours"
+                  rangeMax="250"
+              ></heatmap>
+            </v-sheet>
+          </v-col>
+          <v-col cols="12" md="3">
+            <v-card-actions>
+              <v-select
+                  class="px-2"
+                  v-model="node"
+                  :items="nodes"
+                  v-on:change="switchData()"
+                  label="Knotenpunkte"
+              ></v-select>
+            </v-card-actions>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-overlay>
+    <v-card
+        :height="height"
+        :width="width"
+        outlined
+    >
+      <v-system-bar window>
+        <v-spacer/>
+        <v-btn icon @click="overlay = true">
+          <v-icon>mdi-window-maximize</v-icon>
+        </v-btn>
+      </v-system-bar>
+      <v-card-title>Belastung nach Zeit und Fahrzeugen</v-card-title>
+      <v-card-text>
+        Die Grafik zeigt, wieviele Fahrzeuge, wecher Art, zu welcher Zeit, die Zählstelle passiert haben.
+        Wenn Sie mit der Maus über die Abschnitte fahren, werden Ihnen die genauen Zahlen angezeigt. Fahren Sie mit der Maus unten über die Legende,
+        so werden die Abschnitte hervorgehoben, die zur Farbe passen.
+      </v-card-text>
+      <v-row>
+        <v-col cols="12" md="9">
+          <v-sheet :height="$vuetify.breakpoint.height * 0.8" max-height="300">
+            <heatmap
+                ref="heatmap"
+                :data="data"
+                name="Zählung 08.2019"
+                :categories="categories"
+                :hours="hours"
+                rangeMax="250"
+            ></heatmap>
+          </v-sheet>
+        </v-col>
+        <v-col cols="12" md="3">
+          <v-card-actions>
+            <v-select
+                class="px-2"
+                v-model="node"
+                :items="nodes"
+                v-on:change="switchData()"
+                label="Knotenpunkte"
+            ></v-select>
+          </v-card-actions>
+        </v-col>
+      </v-row>
+    </v-card>
+  </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 import { Component, Prop, Ref } from "vue-property-decorator"
 
 import Heatmap from "@/components/charts/Heatmap.vue"
-
-// import { base64ToBlob } from "base64-blob"
 
 @Component({
   components: {
@@ -61,22 +111,7 @@ export default class HeatmapCard extends Vue {
 
   @Ref('heatmap') readonly heatmap!: Heatmap
 
-  // takePicture() {
-  //
-  //   const b64 = this.heatmap.printImage()
-  //
-  //   base64ToBlob(b64)
-  //   .then((b) => {
-  //     const name = "heatmap_" + this.node.toLowerCase() + ".png"
-  //     const url = URL.createObjectURL(b)
-  //     const link = document.createElement('a')
-  //     link.href = url
-  //     link.download
-  //     link.setAttribute('download', name)
-  //     document.body.appendChild(link)
-  //     link.click()
-  //   })
-  // }
+  overlay:boolean = false;
 
   switchData() {
     // HACK !!!
@@ -603,7 +638,7 @@ export default class HeatmapCard extends Vue {
       [93,0,36],	[93,1,11],	[93,2,1],	[93,3,48],
       [94,0,9],	[94,1,1],	[94,2,1],	[94,3,11],
       [95,0,7],	[95,1,6],	[95,2,2],	[95,3,15]
-    ] 
+    ]
   }
 
   get categories() {

@@ -1,10 +1,10 @@
 <template>
   <v-container fluid class="pa-0">
     <v-row no-gutters>
-      <dummy-map
+      <dummy-map2
         :zoom="14"
         :selected-marker-id="markerId"
-      ></dummy-map>
+      ></dummy-map2>
     </v-row>
     <v-row>
       <v-col cols="2">
@@ -60,14 +60,14 @@
               <v-row>
                 <v-col>
                   <heatmap-card
-                    height="500px"
+                    height="500"
                   ></heatmap-card>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="12" md="12">
                   <belastungsplan-card
-                      height="820"
+                      height="700"
                   ></belastungsplan-card>
                 </v-col>
               </v-row>
@@ -81,14 +81,14 @@
               <v-row>
                 <v-col cols="12" md="12">
                   <stepline-card
-                    height="820"
+                    height="700"
                   ></stepline-card>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
                   <line-bar-card
-                      height="810">
+                      height="650">
                   </line-bar-card>
                 </v-col>
               </v-row>
@@ -111,7 +111,7 @@
   import Vue from 'vue'
   import {Component} from "vue-property-decorator"
 
-  import DummyMap from "@/components/map/DummyMap.vue"
+  import DummyMap2 from "@/components/map/DummyMap2.vue"
 
   import HeatmapCard from "@/components/charts/HeatmapCard.vue"
   import BelastungsplanCard from "@/components/charts/BelastungsplanCard.vue";
@@ -128,7 +128,7 @@
     ZaehlstelleHeader,
     BelastungsplanCard,
     LineBarCard,
-    DummyMap,
+    DummyMap2,
     ListCard,
     BelastungsplanCircleCard
   }

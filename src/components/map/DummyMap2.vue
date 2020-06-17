@@ -1,41 +1,8 @@
 <template>
-  <div :style="{
+  <div id="mapid" :style="{
     height: this.height,
     width: this.width
   }">
-    <l-map
-        ref="map"
-        :zoom="zoom"
-        :center="center"
-        style="z-index: 1">
-      <l-marker
-        v-for="marker in markers"
-        :key="marker.id"
-        :lat-lng="createLatLng(marker.lat, marker.lng)"
-        :options="options(marker.id)"
-        @click="showMe(marker.id)"
-      >
-        <l-tooltip :options="{
-            direction: 'top'
-        }">
-          <div>
-            <b>{{marker.counter}}</b><br/>
-            Stadtbezirk: {{marker.districtNumber}} <br/>
-            Anzahl der Zählungen: {{marker.countsNum}} <br/>
-            Letzte Zählung: {{marker.lastCount}}  <br/>
-            Grund d. Zählung: {{marker.reason}}
-          </div>
-        </l-tooltip>
-      </l-marker>
-      <l-wms-tile-layer
-          base-url='https://geoportal.muenchen.de/geoserver/gsm/wms?'
-          layers='g_stadtkarte_gesamt'
-          :visible=true
-          name="Stadtplan"
-          attribution='&copy; <a href="https://www.muenchen.de/rathaus/Stadtverwaltung/Kommunalreferat/geodatenservice/geobasisdaten.html">GeodatenService München</a>'
-          layer-type="base"
-      />
-    </l-map>
   </div>
 </template>
 <script lang="ts">
@@ -44,20 +11,14 @@
 
   import CounterService from "@/services/CounterService"
 
-  // imports for leaflet
-  import {LMap, LTileLayer, LWMSTileLayer, LMarker, LTooltip} from "vue2-leaflet"
   // eslint-disable-next-line no-unused-vars
-  import {latLng, LatLng} from "leaflet"
+  import {latLng, Map, Marker, TileLayer} from 'leaflet'
+  // eslint-disable-next-line no-unused-vars
+  import Counter from "@/types/Counter";
 
-  @Component({
-    components: {
-      LMap,
-      LTileLayer,
-      LMarker,
-      LTooltip,
-      'l-wms-tile-layer': LWMSTileLayer,
-    }
-  })
+  import 'leaflet.markercluster';
+
+  @Component
   export default class DummyMap extends Vue {
 
     @Prop({default: "180px"}) readonly height!: string;
@@ -69,12 +30,44 @@
 
     @Prop({default: false}) readonly showMarker!: boolean;
 
-    // Map
-    // zoom: number = 14
-    // center: LatLng = latLng(48.142537,11.534742)
-    // center: LatLng = latLng(48.137227,11.575517)
-    url: string = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution: string = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    mounted() {
+      let map = new Map('mapid', {center: this.center, zoom: this.zoom});
+      let wmsLayer = new TileLayer.WMS('https://geoportal.muenchen.de/geoserver/gsm/wms?', {
+        layers: 'g_stadtkarte_gesamt',
+        attribution:'&copy; <a href="https://www.muenchen.de/rathaus/Stadtverwaltung/Kommunalreferat/geodatenservice/geobasisdaten.html">GeodatenService München</a>',
+      })
+      map.addLayer(wmsLayer);
+
+      const L = window['L'];
+
+      const mymarkers = L.markerClusterGroup();
+
+      const markers1:Counter[] = this.markers;
+      markers1.forEach(mark => {
+        let marker = new Marker(this.createLatLng(mark.lat, mark.lng), this.options(mark.id));
+            marker.bindTooltip(`<div>`
+                + `<b>${mark.counter}</b><br/>`
+                + `Stadtbezirk: ${mark.districtNumber} <br/>`
+                + `Anzahl der Zählungen: ${mark.countsNum} <br/>`
+                + `Letzte Zählung: ${mark.lastCount}  <br/>`
+                + `Grund d. Zählung: ${mark.reason}`
+                + `</div>`,
+                {direction: "top"});
+            marker.on('click', () => {
+              this.showMe(mark.id);
+            });
+            if(this.selectedMarkerId !== "") {
+              mymarkers.addLayer(marker)
+            } else {
+              marker.addTo(map);
+            }
+
+
+      });
+      if(this.selectedMarkerId !== "") {
+        map.addLayer(mymarkers);
+      }
+    }
 
     private showMe(id: string) {
       this.$router.push("/chartdemo/" + id);
@@ -123,7 +116,7 @@
       }
     }
 
-    get counters (): any[] {
+    get counters (): Counter[] {
       return CounterService.counters()
     }
   }

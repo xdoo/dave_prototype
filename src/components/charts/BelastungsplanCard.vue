@@ -1,64 +1,147 @@
 <template>
-  <v-card
-      :height="height"
-      :width="width"
-      outlined
-  >
-    <v-card-title>Belastung nach Knotenarmen</v-card-title>
-    <v-card-text>
-      Die Grafik zeigt, wie viele Fahrzeuge der gewählten Kategorien in welche Richtung gefahren sind.
-    </v-card-text>
-    <v-card-actions>
-      <v-select
-          class="px-2"
-          v-model="nodes"
-          :items="defaultNodes"
-          multiple
-          dense
-          small-chips
-          :deletable-chips="nodes.length > 2"
-          v-on:change="switchNumberOfNodes()"
-          label="Knotenarme"
-      ></v-select>
-<!--      <v-select-->
-<!--          class="px-2"-->
-<!--          v-model="colorNode"-->
-<!--          :items="colorNodes"-->
-<!--          v-on:change="switchColor()"-->
-<!--          label="Knotenarme"-->
-<!--          dense-->
-<!--      ></v-select>-->
-      <v-select
-          class="px-2"
-          v-model="fahrzeugklasse"
-          :items="fahrzeugklassen"
-          v-on:change="switchFahrzeugklasse()"
-          label="Fahrzeugklassen"
-          dense
-      ></v-select>
-<!--      <v-btn-->
-<!--          @click="takePicture()"-->
-<!--          title="Chart als Bild herunterladen."-->
-<!--          icon>-->
-<!--        <v-icon>mdi-image</v-icon>-->
-<!--      </v-btn>-->
-<!--      <v-btn-->
-<!--          title="Daten als Tabelle herunter laden."-->
-<!--          icon>-->
-<!--        <v-icon>mdi-table-large</v-icon>-->
-<!--      </v-btn>-->
-    </v-card-actions>
-    <v-sheet height="72%">
-      <belastungsplan
-          ref="belastungsplan"
-          name="Zählung 05.04.2016"
-          :data="data"
-          :streets="streets"
-          :visibleNodes="visibleNodes"
-          :color="color">
-      </belastungsplan>
-    </v-sheet>
-  </v-card>
+  <div>
+    <v-overlay :value="overlay" light :dark="false">
+      <v-card
+          :height="$vuetify.breakpoint.height * 0.98"
+          :width="$vuetify.breakpoint.width * 0.98"
+          outlined
+      >
+      <v-system-bar window>
+        Belastung nach Knotenarmen
+        <v-spacer/>
+        <v-btn icon @click="overlay = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </v-system-bar>
+      <v-row>
+        <v-col cols="12" md="9">
+          <v-sheet :height="$vuetify.breakpoint.height * 0.8" max-height="500">
+            <belastungsplan
+                ref="belastungsplan"
+                name="Zählung 05.04.2016"
+                :data="data"
+                :streets="streets"
+                :visibleNodes="visibleNodes"
+                :color="color">
+            </belastungsplan>
+          </v-sheet>
+        </v-col>
+        <v-col cols="12" md="3">
+          <v-row>
+          <v-card-actions>
+            <v-select
+                class="px-2"
+                v-model="nodes"
+                :items="defaultNodes"
+                multiple
+                dense
+                small-chips
+                :deletable-chips="nodes.length > 2"
+                v-on:change="switchNumberOfNodes()"
+                label="Knotenarme"
+            ></v-select>
+          </v-card-actions>
+          </v-row>
+<!--          <v-row>-->
+<!--            <v-card-actions>-->
+<!--                    <v-select-->
+<!--                        class="px-2"-->
+<!--                        v-model="colorNode"-->
+<!--                        :items="colorNodes"-->
+<!--                        v-on:change="switchColor()"-->
+<!--                        label="Knotenarme"-->
+<!--                        dense-->
+<!--                    ></v-select>-->
+<!--            </v-card-actions>-->
+<!--          </v-row>-->
+          <v-row>
+            <v-card-actions>
+              <v-select
+                  class="px-2"
+                  v-model="fahrzeugklasse"
+                  :items="fahrzeugklassen"
+                  v-on:change="switchFahrzeugklasse()"
+                  label="Fahrzeugklassen"
+                  dense
+              ></v-select>
+            </v-card-actions>
+          </v-row>
+        </v-col>
+      </v-row>
+      </v-card>
+    </v-overlay>
+    <v-card
+        :height="height"
+        :width="width"
+        outlined
+    >
+      <v-system-bar window>
+        <v-spacer/>
+        <v-btn icon @click="overlay = true">
+          <v-icon>mdi-window-maximize</v-icon>
+        </v-btn>
+      </v-system-bar>
+      <v-card-title>Belastung nach Knotenarmen</v-card-title>
+      <v-card-text>
+        Die Grafik zeigt, wie viele Fahrzeuge der gewählten Kategorien in welche Richtung gefahren sind.
+      </v-card-text>
+      <v-row>
+        <v-col cols="12" md="9">
+          <v-sheet :height="$vuetify.breakpoint.height * 0.8" max-height="500">
+            <belastungsplan
+                ref="belastungsplan"
+                name="Zählung 05.04.2016"
+                :data="data"
+                :streets="streets"
+                :visibleNodes="visibleNodes"
+                :color="color">
+            </belastungsplan>
+          </v-sheet>
+        </v-col>
+        <v-col cols="12" md="3">
+          <v-row>
+            <v-card-actions>
+              <v-select
+                  class="px-2"
+                  v-model="nodes"
+                  :items="defaultNodes"
+                  multiple
+                  dense
+                  small-chips
+                  :deletable-chips="nodes.length > 2"
+                  v-on:change="switchNumberOfNodes()"
+                  label="Knotenarme"
+              ></v-select>
+            </v-card-actions>
+          </v-row>
+          <!--          <v-row>-->
+          <!--            <v-card-actions>-->
+          <!--                    <v-select-->
+          <!--                        class="px-2"-->
+          <!--                        v-model="colorNode"-->
+          <!--                        :items="colorNodes"-->
+          <!--                        v-on:change="switchColor()"-->
+          <!--                        label="Knotenarme"-->
+          <!--                        dense-->
+          <!--                    ></v-select>-->
+          <!--            </v-card-actions>-->
+          <!--          </v-row>-->
+          <v-row>
+            <v-card-actions>
+              <v-select
+                  class="px-2"
+                  v-model="fahrzeugklasse"
+                  :items="fahrzeugklassen"
+                  v-on:change="switchFahrzeugklasse()"
+                  label="Fahrzeugklassen"
+                  dense
+              ></v-select>
+            </v-card-actions>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-card>
+  </div>
 </template>
 <script lang="ts">
   import Vue from 'vue'
@@ -88,6 +171,10 @@
     @Prop({default: "100%"}) readonly width!: string
 
     @Ref('belastungsplan') readonly belastungsplan!: Belastungsplan
+
+    overlay:boolean = false;
+    height2: string = "600"
+    width2: string = "1000"
 
     mounted() {
       this.switchNumberOfNodes();

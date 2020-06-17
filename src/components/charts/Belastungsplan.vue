@@ -63,7 +63,7 @@
         },
         toolbox: {
           showTitle: false,
-          right: '2%',
+          orient: 'vertical',
           feature: {
             saveAsImage: {show: true, title: 'Download', name: 'Belastungsplan'},
             // dataView: {show: true, readOnly: true, title: 'Datenansicht', lang: ['Datenansicht', 'zurück', 'refresh']},
@@ -79,8 +79,8 @@
             name: this.name,
             type: 'graph',
             layout: 'none',
-            width: 400,
-            height: 400,
+            width: 299,
+            height: 299,
             symbol: 'none',
             // Default SymbolSize
             edgeSymbolSize: 10,
@@ -1400,8 +1400,8 @@
             type: 'graph',
             layout: 'none',
             center: [0,0],
-            width: 400,
-            height: 400,
+            width: 299,
+            height: 299,
             symbol: 'none',
             symbolSize: 20,
             label: {
@@ -1411,8 +1411,9 @@
               borderRadius: 4,
               rich: {
                 valueLeft: {
+                  fontSize: 10,
                   color: '#999',
-                  lineHeight: 13,
+                  // lineHeight: 13,
                   align: 'left'
                 },
                 dividerLeft: {
@@ -1421,14 +1422,16 @@
                   align: 'left'
                 },
                 nameLeft: {
-                  fontSize: 16,
-                  lineHeight: 22,
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                  // lineHeight: 22,
                   align: 'left',
                   color: 'black'
                 },
                 valueRight: {
+                  fontSize: 10,
                   color: '#999',
-                  lineHeight: 13,
+                  // lineHeight: 13,
                   align: 'right'
                 },
                 dividerRight: {
@@ -1437,8 +1440,9 @@
                   align: 'right'
                 },
                 nameRight: {
-                  fontSize: 16,
-                  lineHeight: 22,
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                  // lineHeight: 22,
                   align: 'right',
                   color: 'black'
                 },
@@ -1468,7 +1472,7 @@
                 label: {
                   formatter: this.formatLabel(1, true),
                   show: this.visibleNodes[1],
-                  position: [40, -60]
+                  position: [40, -50]
                 }
               },
               // 3 Source
@@ -1532,7 +1536,7 @@
                   formatter: this.formatLabel(6, false),
                   show: this.visibleNodes[6],
                   rotate: 45,
-                  position: [-100, 30]
+                  position: [-110, 30]
                 }
               },
               // 8 Source
@@ -1556,8 +1560,8 @@
             type: 'graph',
             layout: 'none',
             center: [0,0],
-            width: 400,
-            height: 400,
+            width: 299,
+            height: 299,
             symbol: 'none',
             symbolSize: 20,
             // Sources
@@ -1700,11 +1704,11 @@
         return `{valueLeft|${textLeft}}`
             + `{dividerLeft|--------}\n {valueLeft|${outgoing} }\n`
             + `{nameLeft| ${this.streets[node]}} \n`
-            + `{valueLeft| ${outgoing + incoming} }\n\n\n`
+            + `{valueLeft| ${outgoing + incoming} }\n\n`
             + `{valueLeft| ${incoming} }`
             ;
       } else {
-        return `{valueRight| ${incoming} }\n\n\n`
+        return `{valueRight| ${incoming} }\n\n`
             + `{nameRight| ${this.streets[node]}} \n`
             + `{valueRight| ${outgoing + incoming} }\n\n`
             + `{valueRight|${textRight}}`

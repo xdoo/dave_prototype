@@ -100,7 +100,6 @@
     private calculateLatLng(zaehlstelle:ZaehlstelleSearchObject):LatLng {
       const utm = "+proj=utm +zone=32";
       const lngLat = proj4(utm,'WGS84',[Number.parseInt(zaehlstelle.xkoordinate), Number.parseInt(zaehlstelle.ykoordinate)]);
-      console.log(lngLat);
       return new LatLng(lngLat[1], lngLat[0]);
     }
 
