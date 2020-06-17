@@ -754,7 +754,6 @@
     }
 
     private calculateLineWidth(cars: number): number {
-      console.log(this.data);
       let maxWidth = 10;
       if (cars === 0) {
         return 0;

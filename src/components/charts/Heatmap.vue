@@ -49,9 +49,6 @@ export default class Heatmap extends Vue {
   }
 
   get options () {
-
-    console.log(this.color)
-
     return {
       toolbox: {
         showTitle: false,

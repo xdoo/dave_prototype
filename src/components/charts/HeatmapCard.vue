@@ -6,7 +6,7 @@
           :width="$vuetify.breakpoint.width * 0.98"
           outlined
       >
-        <v-system-bar>
+        <v-system-bar window>
           Belastung nach Zeit und Fahrzeugen
           <v-spacer/>
           <v-btn icon @click="overlay = false">
@@ -50,7 +50,7 @@
         :width="width"
         outlined
     >
-      <v-system-bar>
+      <v-system-bar window>
         <v-spacer/>
         <v-btn icon @click="overlay = true">
           <v-icon>mdi-window-maximize</v-icon>
