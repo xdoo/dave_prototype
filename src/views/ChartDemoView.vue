@@ -1,18 +1,21 @@
 <template>
   <v-container fluid class="pa-0">
     <v-row no-gutters>
-<!--      <dummy-map2-->
-<!--        :zoom="14"-->
-<!--        :selected-marker-id="markerId"-->
-<!--      ></dummy-map2>-->
-      <dummy-map
+      <v-col cols="4">
+        <zaehlstelle-header
+          :counter-id="markerId"
+        ></zaehlstelle-header>
+      </v-col>
+      <v-col>
+        <dummy-map
           :zoom="14"
           :selected-marker-id="markerId"
-      ></dummy-map>
+        ></dummy-map>
+      </v-col>
     </v-row>
     <v-row>
-      <v-col cols="2">
-        <v-list width="100%" two-line subheader class="pt-10">
+      <v-col cols="3">
+        <v-list width="100%" two-line subheader>
           <v-subheader></v-subheader>
           <v-list-item @click="dummyClick()">
             <v-list-item-avatar>
@@ -52,13 +55,8 @@
           </v-list-item>
         </v-list>
       </v-col>
-      <v-col cols="10">
+      <v-col cols="9">
         <v-container class="pa-0">
-          <v-row>
-            <zaehlstelle-header
-              :counter-id="markerId"
-            ></zaehlstelle-header>
-          </v-row>
           <v-row>
             <v-container>
               <v-row>

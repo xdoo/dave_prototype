@@ -215,7 +215,11 @@
         {text: 'Bahn', type: 'search', counterId: '', ids: [4, 6, 10, 19]},
         {text: 'Isar', type: 'search', counterId: '', ids: [2, 3]},
         {text: 'Dachauerstraße Ampelschaltung', type: 'search', counterId: '', ids: [11, 12, 15]},
-        {text: 'Dachauerstraße Umbau Trambahn', type: 'search', counterId: '', ids: [13, 14, 17, 18]}
+        {text: 'Dachauerstraße Umbau Trambahn', type: 'search', counterId: '', ids: [13, 14, 17, 18]},
+        {text: 'Bahn Brücke', type: 'search', counterId: '', ids: [6, 19]},
+        {text: 'Bahn Unterführung', type: 'search', counterId: '', ids: [4, 10]},
+        {text: 'Brücke', type: 'search', counterId: '', ids: [6, 19, 2, 3]},
+        {text: 'Unterführung', type: 'search', counterId: '', ids: [4, 10]}
       ]
     }
 
