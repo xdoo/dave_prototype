@@ -56,7 +56,7 @@
             marker.on('click', () => {
               this.showMe(mark.id);
             });
-            if(this.selectedMarkerId !== "") {
+            if(this.selectedMarkerId === undefined) {
               mymarkers.addLayer(marker)
             } else {
               marker.addTo(map);
@@ -64,7 +64,7 @@
 
 
       });
-      if(this.selectedMarkerId !== "") {
+      if(this.selectedMarkerId === undefined) {
         map.addLayer(mymarkers);
       }
     }
