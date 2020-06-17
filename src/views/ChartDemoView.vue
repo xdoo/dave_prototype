@@ -5,10 +5,17 @@
 <!--        :zoom="14"-->
 <!--        :selected-marker-id="markerId"-->
 <!--      ></dummy-map2>-->
+<v-col>
+  <zaehlstelle-header
+              :counter-id="markerId"
+            ></zaehlstelle-header>
+</v-col>
+<v-col>
       <dummy-map
           :zoom="14"
           :selected-marker-id="markerId"
       ></dummy-map>
+</v-col>
     </v-row>
     <v-row>
       <v-col cols="2">
@@ -54,11 +61,6 @@
       </v-col>
       <v-col cols="10">
         <v-container class="pa-0">
-          <v-row>
-            <zaehlstelle-header
-              :counter-id="markerId"
-            ></zaehlstelle-header>
-          </v-row>
           <v-row>
             <v-container>
               <v-row>
