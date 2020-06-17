@@ -22,16 +22,18 @@
 </template>
 <script lang="ts">
   import Vue from 'vue'
-  import {Component, Prop, Ref} from "vue-property-decorator"
+  import {Component, Prop, Ref, Watch} from "vue-property-decorator"
 
   import CounterService from "@/services/CounterService"
 
   // imports for leaflet
   import {LMap, LTileLayer, LWMSTileLayer, LMarker, LTooltip} from "vue2-leaflet"
   // eslint-disable-next-line no-unused-vars
-  import {latLng, LatLng, Map, Marker, TileLayer} from "leaflet"
+  import {latLng, LatLng, Marker} from "leaflet"
   // eslint-disable-next-line no-unused-vars
   import Counter from "@/types/Counter";
+  import L from 'leaflet'
+
 
   @Component({
     components: {
@@ -59,19 +61,21 @@
       minZoom: 10,
       maxZoom: 18,
     };
-
-    // Map
-    // zoom: number = 14
-    // center: LatLng = latLng(48.142537,11.534742)
-    // center: LatLng = latLng(48.137227,11.575517)
-    url: string = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution: string = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    mymarkers = L.markerClusterGroup();
 
     mounted() {
-      const L = window['L'];
+      this.setMarker();
+    }
 
-      const mymarkers = L.markerClusterGroup();
+    @Watch('$store.state.search.dummyresult')
+    resetMarker() {
+      // Alte Layer entfernen bevor neue eingezeichnet werden
+      this.mymap.mapObject.removeLayer(this.mymarkers);
+      this.setMarker();
+    }
 
+    setMarker() {
+      this.mymarkers =L.markerClusterGroup();
       const markers1:Counter[] = this.markers;
       markers1.forEach(mark => {
         let marker = new Marker(this.createLatLng(mark.lat, mark.lng), this.options(mark.id));
@@ -87,15 +91,13 @@
           this.showMe(mark.id);
         });
         if(this.selectedMarkerId === undefined) {
-          mymarkers.addLayer(marker)
+          this.mymarkers.addLayer(marker)
         } else {
           marker.addTo(this.mymap.mapObject);
         }
-
-
       });
       if(this.selectedMarkerId === undefined) {
-        this.mymap.mapObject.addLayer(mymarkers);
+        this.mymap.mapObject.addLayer(this.mymarkers);
       }
     }
 
