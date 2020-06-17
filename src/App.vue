@@ -32,7 +32,7 @@
               Kann Später für die Schnellsuche verwendet werden.
             -->
 
-      <v-text-field
+      <v-autocomplete
           id="suchfeld"
           flat
           solo-inverted
@@ -44,7 +44,33 @@
           prepend-inner-icon="mdi-magnify"
           @keyup.enter="quickSearch"
           color="black"
-      ></v-text-field>
+          :items="suggests"
+          return-object
+      >
+        <template v-slot:no-data>
+          <v-list class="pa-3">
+            <v-list-item-title>
+              Kein Suchergebnis...
+            </v-list-item-title>
+          </v-list>
+        </template>
+        <template v-slot:item="{ item }">
+          <v-list-item-content>
+            <v-list-item-title v-if="item.type === 'search'">
+              <v-icon small>mdi-magnify</v-icon>
+              {{item.text}}
+            </v-list-item-title>
+            <v-list-item-title v-if="item.type === 'count'" @click="showMe">
+              <v-icon small>mdi-counter</v-icon>
+              {{item.text}}
+            </v-list-item-title>
+            <v-list-item-title v-if="item.type === 'counter'" @click="showMe">
+              <v-icon small >mdi-map-marker</v-icon>
+              {{item.text}}
+            </v-list-item-title>
+          </v-list-item-content>
+        </template>
+      </v-autocomplete>
 
       <v-spacer></v-spacer>
       <span> {{ this.loggedInUser }} </span>
@@ -118,7 +144,7 @@
     private backendVersion: string = "";
     private frontendVersion: string = "";
 
-    private searchQuery: string = '';
+    private searchQuery: any = {};
     private drawer: boolean = true;
 
     // mounted() {
@@ -150,8 +176,47 @@
     //Navigiert zur Seite mit den Suchergebnissen und sendet ein Event zum Auslösen weiterer Suchen.
     private quickSearch() {
       if (this.searchQuery !== '' && this.searchQuery != null) {
-        // this.$router.push(`/zaehlstelleoverview/${this.searchQuery}`);
+        if(this.searchQuery.type === "search") {
+          this.$store.dispatch('search/dummyresult', this.searchQuery.ids)
+        } else {
+          this.showMe(this.searchQuery.counterId)
+        }
       }
+    }
+
+    private showMe(id: string) {
+      this.$router.push("/chartdemo/" + id);
+    }
+
+    get suggests() {
+      return [
+        {text: '1 Altstadt - Lehel', type: 'search', counterId: '', ids: []},
+        {text: '10 Moosach', type: 'search', counterId: '', ids: [10, 11, 12, 15, 16, 17, 18]},
+        {text: 'Moosach', type: 'search', counterId: '', ids: [10, 11, 12, 15, 16, 17, 18]},
+        {text: 'Moosach Bahn', type: 'search', counterId: '', ids: [10, 19]},
+        {text: '11 Milbertshofen - Am Hart', type: 'search', counterId: '', ids: []},
+        {text: '12 Schwabing - Freimann', type: 'search', counterId: '', ids: []},
+        {text: '13 Bogenhausen', type: 'search', counterId: '', ids: []},
+        {text: 'Bogenhausen', type: 'search', counterId: '', ids: [1, 2, 3, 4, 5]},
+        {text: 'Bogenhausen Isar', type: 'search', counterId: '', ids: [2, 3]},
+        {text: 'Bogenhausen Denninger Str. / Vollmannstr.', type: 'counter', counterId: '1', ids: []},
+        {text: 'Denniger Str. / Vollmannstr. ', type: 'counter', counterId: '1', ids: []},
+        {text: 'Bogenhausen Truderinger Str. ', type: 'counter', counterId: '4', ids: []},
+        {text: '8 Schwanthalerhöhe', type: 'search', counterId: '', ids: [6, 7, 8, 9]},
+        {text: 'Schwanthalerhöhe', type: 'search', counterId: '', ids: [6, 7, 8, 9]},
+        {text: 'Schwanthalerhöhe Donnersberger Brücke', type: 'counter', counterId: '6', ids: []},
+        {text: 'Donnersberger Brücke', type: 'counter', counterId: '6', ids: []},
+        {text: '24.12.2019 Donnersberger Brücke', type: 'count', counterId: '6', ids: []},
+        {text: '16.04.2018 Donnerberger Brücke', type: 'count', counterId: '6', ids: []},
+        {text: '12.08.2015 Donnersberger Brücke', type: 'count', counterId: '6', ids: []},
+        {text: '16.04.2018 Denninger Str.', type: 'count', counterId: '6', ids: []},
+        {text: 'AZ4711 16.04.2018 Donnersbergerbrücke ', type: 'count', counterId: '6', ids: []},
+        {text: 'Dachauerstraße', type: 'search', counterId: '', ids: [10, 11, 12, 13, 14, 15, 16, 17, 18]},
+        {text: 'Bahn', type: 'search', counterId: '', ids: [4, 6, 10, 19]},
+        {text: 'Isar', type: 'search', counterId: '', ids: [2, 3]},
+        {text: 'Dachauerstraße Ampelschaltung', type: 'search', counterId: '', ids: [11, 12, 15]},
+        {text: 'Dachauerstraße Umbau Trambahn', type: 'search', counterId: '', ids: [13, 14, 17, 18]}
+      ]
     }
 
   }
