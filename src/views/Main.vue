@@ -1,10 +1,16 @@
 <template>
-  <dummy-map2
-        height="100%"
-        width="100%"
-        show-marker=true
-        :zoom="12"
+  <dummy-map
+      height="100%"
+      width="100%"
+      show-marker=true
+      :zoom="12"
   />
+<!--  <dummy-map2-->
+<!--        height="100%"-->
+<!--        width="100%"-->
+<!--        show-marker=true-->
+<!--        :zoom="12"-->
+<!--  />-->
 <!--  <v-container>-->
 <!--    <v-layout-->
 <!--        text-center-->
@@ -40,10 +46,11 @@
 <script lang="ts">
   import {Component, Vue} from 'vue-property-decorator';
   import DummyMap2 from "@/components/map/DummyMap2.vue";
+  import DummyMap from "@/components/map/DummyMap.vue";
   import {latLng} from "leaflet";
 
   @Component({
-    components: {DummyMap2}
+    components: {DummyMap2,DummyMap}
   })
   export default class App extends Vue {
 

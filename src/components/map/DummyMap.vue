@@ -7,26 +7,8 @@
         ref="map"
         :zoom="zoom"
         :center="center"
+        :options="mapOptions"
         style="z-index: 1">
-      <l-marker
-        v-for="marker in markers"
-        :key="marker.id"
-        :lat-lng="createLatLng(marker.lat, marker.lng)"
-        :options="options(marker.id)"
-        @click="showMe(marker.id)"
-      >
-        <l-tooltip :options="{
-            direction: 'top'
-        }">
-          <div>
-            <b>{{marker.counter}}</b><br/>
-            Stadtbezirk: {{marker.districtNumber}} <br/>
-            Anzahl der Zählungen: {{marker.countsNum}} <br/>
-            Letzte Zählung: {{marker.lastCount}}  <br/>
-            Grund d. Zählung: {{marker.reason}}
-          </div>
-        </l-tooltip>
-      </l-marker>
       <l-wms-tile-layer
           base-url='https://geoportal.muenchen.de/geoserver/gsm/wms?'
           layers='g_stadtkarte_gesamt'
@@ -40,14 +22,16 @@
 </template>
 <script lang="ts">
   import Vue from 'vue'
-  import {Component, Prop} from "vue-property-decorator"
+  import {Component, Prop, Ref} from "vue-property-decorator"
 
   import CounterService from "@/services/CounterService"
 
   // imports for leaflet
   import {LMap, LTileLayer, LWMSTileLayer, LMarker, LTooltip} from "vue2-leaflet"
   // eslint-disable-next-line no-unused-vars
-  import {latLng, LatLng} from "leaflet"
+  import {latLng, LatLng, Map, Marker, TileLayer} from "leaflet"
+  // eslint-disable-next-line no-unused-vars
+  import Counter from "@/types/Counter";
 
   @Component({
     components: {
@@ -69,12 +53,51 @@
 
     @Prop({default: false}) readonly showMarker!: boolean;
 
+    @Ref('map') readonly mymap!: LMap
+
+    private mapOptions: object = {
+      minZoom: 10,
+      maxZoom: 18,
+    };
+
     // Map
     // zoom: number = 14
     // center: LatLng = latLng(48.142537,11.534742)
     // center: LatLng = latLng(48.137227,11.575517)
     url: string = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     attribution: string = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+
+    mounted() {
+      const L = window['L'];
+
+      const mymarkers = L.markerClusterGroup();
+
+      const markers1:Counter[] = this.markers;
+      markers1.forEach(mark => {
+        let marker = new Marker(this.createLatLng(mark.lat, mark.lng), this.options(mark.id));
+        marker.bindTooltip(`<div>`
+            + `<b>${mark.counter}</b><br/>`
+            + `Stadtbezirk: ${mark.districtNumber} <br/>`
+            + `Anzahl der Zählungen: ${mark.countsNum} <br/>`
+            + `Letzte Zählung: ${mark.lastCount}  <br/>`
+            + `Grund d. Zählung: ${mark.reason}`
+            + `</div>`,
+            {direction: "top"});
+        marker.on('click', () => {
+          this.showMe(mark.id);
+        });
+        if(this.selectedMarkerId === undefined) {
+          mymarkers.addLayer(marker)
+        } else {
+          marker.addTo(this.mymap.mapObject);
+        }
+
+
+      });
+      if(this.selectedMarkerId === undefined) {
+        this.mymap.mapObject.addLayer(mymarkers);
+      }
+    }
 
     private showMe(id: string) {
       this.$router.push("/chartdemo/" + id);

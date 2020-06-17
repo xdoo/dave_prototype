@@ -1,10 +1,14 @@
 <template>
   <v-container fluid class="pa-0">
     <v-row no-gutters>
-      <dummy-map2
-        :zoom="14"
-        :selected-marker-id="markerId"
-      ></dummy-map2>
+<!--      <dummy-map2-->
+<!--        :zoom="14"-->
+<!--        :selected-marker-id="markerId"-->
+<!--      ></dummy-map2>-->
+      <dummy-map
+          :zoom="14"
+          :selected-marker-id="markerId"
+      ></dummy-map>
     </v-row>
     <v-row>
       <v-col cols="2">
@@ -112,6 +116,7 @@
   import {Component} from "vue-property-decorator"
 
   import DummyMap2 from "@/components/map/DummyMap2.vue"
+  import DummyMap from "@/components/map/DummyMap.vue"
 
   import HeatmapCard from "@/components/charts/HeatmapCard.vue"
   import BelastungsplanCard from "@/components/charts/BelastungsplanCard.vue";
@@ -129,6 +134,7 @@
     BelastungsplanCard,
     LineBarCard,
     DummyMap2,
+    DummyMap,
     ListCard,
     BelastungsplanCircleCard
   }
