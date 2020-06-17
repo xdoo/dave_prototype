@@ -1,9 +1,9 @@
 <template>
-  <dummy-map
-      height="100%"
-      width="100%"
-      show-marker=true
-      :zoom="12"
+  <dummy-map2
+        height="100%"
+        width="100%"
+        show-marker=true
+        :zoom="12"
   />
 <!--  <v-container>-->
 <!--    <v-layout-->
@@ -39,11 +39,11 @@
 
 <script lang="ts">
   import {Component, Vue} from 'vue-property-decorator';
-  import DummyMap from "@/components/map/DummyMap.vue";
+  import DummyMap2 from "@/components/map/DummyMap2.vue";
   import {latLng} from "leaflet";
 
   @Component({
-    components: {DummyMap}
+    components: {DummyMap2}
   })
   export default class App extends Vue {
 
