@@ -10,7 +10,10 @@
         <dummy-map
           :zoom="14"
           :selected-marker-id="markerId"
-        ></dummy-map>
+          height="200px"
+        >
+          FooBar
+        </dummy-map>
       </v-col>
     </v-row>
     <v-row>
