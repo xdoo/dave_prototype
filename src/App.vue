@@ -219,7 +219,15 @@
         {text: 'Bahn Brücke', type: 'search', counterId: '', ids: [6, 19]},
         {text: 'Bahn Unterführung', type: 'search', counterId: '', ids: [4, 10]},
         {text: 'Brücke', type: 'search', counterId: '', ids: [6, 19, 2, 3]},
-        {text: 'Unterführung', type: 'search', counterId: '', ids: [4, 10]}
+        {text: 'Unterführung', type: 'search', counterId: '', ids: [4, 10]},
+        {text: 'Dachauerstraße Radverkehr', type: 'search', counterId: '', ids: [20, 11, 12]},
+        {text: 'Dachauerstraße Radverkehr Hugo-Troendle-Straße', type: 'count', counterId: '20', ids: []},
+        {text: 'Dachauerstraße Radverkehr Pelkovenstraße', type: 'count', counterId: '11', ids: []},
+        {text: 'Dachauerstraße Radverkehr Wintrichring', type: 'count', counterId: '12', ids: []},
+        {text: 'Dachauerstraße Schwerverkehr', type: 'count', counterId: '10', ids: []},
+        {text: 'Dachauerstraße Regen', type: 'search', counterId: '', ids: [11, 12, 15, 18]},
+        {text: 'Effnerplatz Regen', type: 'count', counterId: '5', ids: []},
+        {text: 'Dachauerstraße Regen 2018 ', type: 'count', counterId: '11', ids: []}
       ]
     }
 
