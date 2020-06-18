@@ -1,5 +1,7 @@
 import {Icon} from 'leaflet';
 import 'leaflet.markercluster';
+import 'leaflet.fullscreen';
+import 'leaflet.fullscreen/Control.FullScreen.css';
 import 'leaflet/dist/leaflet.css';
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import 'leaflet.markercluster/dist/MarkerCluster.css';

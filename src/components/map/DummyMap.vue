@@ -8,6 +8,7 @@
         :zoom="zoom"
         :center="center"
         :options="mapOptions"
+
         style="z-index: 1">
       <l-wms-tile-layer
           base-url='https://geoportal.muenchen.de/geoserver/gsm/wms?'
@@ -60,6 +61,10 @@
     private mapOptions: object = {
       minZoom: 10,
       maxZoom: 18,
+      fullscreenControl: true,
+      fullscreenControlOptions: {
+        position: 'topleft'
+      }
     };
     mymarkers = L.markerClusterGroup();
 
