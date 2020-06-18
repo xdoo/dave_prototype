@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve --port 8081",
     "build": "vue-cli-service lint --fix && vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint --fix"
+    "lint": "vue-cli-service lint --fix",
+    "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
     "@types/leaflet": "^1.5.12",
@@ -63,7 +64,8 @@
     "url-loader": "^4.1.0",
     "vue-cli-plugin-vuetify": "^2.0.5",
     "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.4.3"
+    "vuetify-loader": "^1.4.3",
+    "execa": "latest"
   },
   "postcss": {
     "plugins": {
